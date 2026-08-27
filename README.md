@@ -22,7 +22,7 @@ src/
   js/main.js          mobile nav, carousel, project filters, contact form
   assets/img          photos, icons, flags (downloaded from Wix, max 2000px)
   assets/fonts        FiraGO Book + Medium (SIL OFL), self-hosted
-  assets/files        company-profile PDFs (ka / en / ru)
+  assets/files        company-profile PDFs (ka / en / ru) — see note below
 tools/                one-off tooling used to mirror and verify the original
 docs/                 build output — published by GitHub Pages (git-ignored)
 ```
@@ -41,6 +41,22 @@ node tools/cmp.js    https://www.bbd.ge/ http://localhost:4321/   # element-by-e
 `build.js` has no dependencies. The tooling under `tools/` needs
 `npm install` (puppeteer + cheerio) and is only required when re-mirroring the
 original site.
+
+## The company-profile PDFs
+
+The three PDFs are ~23 MB each. Bundling them pushes the Pages artifact past
+what `actions/deploy-pages` can publish inside its hard 10-minute limit (the
+`timeout` input is capped at 600000 ms), so they are published as assets on the
+`assets` release and linked from there. The site artifact is ~33 MB.
+
+`src/assets/files` is still the source of truth. After changing a PDF:
+
+```bash
+gh release upload assets src/assets/files/BBD-company-profile-ka.pdf --clobber
+```
+
+Set `PDF_BASE=assets/files` before `node build.js` to bundle them into the site
+instead — worth doing if they are ever compressed down to a few MB each.
 
 ## Deploy
 

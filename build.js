@@ -30,6 +30,15 @@ const ONGOING = new Set(STATUS[statusKeys[2]] || []);
 const SITE_URL = (process.env.SITE_URL || 'https://www.bbd.ge').replace(/\/$/, '');
 const MAP_QUERY = 'David Gamrekeli St 2, Tbilisi, Georgia';
 
+/* The three company-profile PDFs are ~23 MB each. Bundling them would push the
+   Pages artifact past what deploy-pages can publish inside its hard 10-minute
+   limit, so they live as release assets instead. Point PDF_BASE at a local
+   path (e.g. "assets/files") to bundle them again. */
+const PDF_BASE = process.env.PDF_BASE || 'https://github.com/ITConnectGE/bbd.ge/releases/download/assets';
+const isLocalPdfBase = !/^https?:/.test(PDF_BASE);
+const pdfHref = (lang, rel) =>
+  (isLocalPdfBase ? rel + PDF_BASE.replace(/^/|/$/g, '') + '/' : PDF_BASE + '/') + 'BBD-company-profile-' + lang + '.pdf';
+
 /* ---------------------------------------------------------------- helpers */
 const esc = (s) => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -151,7 +160,7 @@ function header(lang, depth, active) {
   const nav = d.home.chrome.nav;
   const rel = relFor(depth);
   const L = { home: nav[0].label, about: nav[1].label, team: nav[2].label, services: nav[3].label, projects: nav[4].label, contact: nav[5].label };
-  const pdf = `${rel}assets/files/BBD-company-profile-${lang}.pdf`;
+  const pdf = pdfHref(lang, rel);
   const isA = (k) => (active === k ? ' is-active' : '');
 
   const langLinks = LANGS.map((l) => {
@@ -766,6 +775,7 @@ function build() {
   }
 
   copyDir(path.join(SRC, 'assets'), path.join(OUT, 'assets'));
+  if (!isLocalPdfBase) fs.rmSync(path.join(OUT, 'assets', 'files'), { recursive: true, force: true });
   copyDir(path.join(SRC, 'css'), path.join(OUT, 'assets', 'css'));
   copyDir(path.join(SRC, 'js'), path.join(OUT, 'assets', 'js'));
   fs.writeFileSync(path.join(OUT, 'assets', 'img', 'favicon.svg'), FAVICON);
