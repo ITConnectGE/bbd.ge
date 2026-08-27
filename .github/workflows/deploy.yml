@@ -43,3 +43,7 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # the artifact carries ~100 MB of photos and PDFs; the 10-minute
+          # default is not enough for Pages to finish propagating it
+          timeout: 1800000
