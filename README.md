@@ -3,6 +3,8 @@
 A hand-written static rebuild of **bbd.ge** (originally a Wix Studio site), in
 Georgian, English and Russian, deployed to GitHub Pages.
 
+**Live:** https://itconnectge.github.io/bbd.ge/
+
 * 6 static pages × 3 languages
 * 60 project detail pages × 3 languages
 * 198 pages total, no runtime framework — plain HTML, one CSS file, one JS file
@@ -30,6 +32,10 @@ docs/                 build output — published by GitHub Pages (git-ignored)
 ```bash
 node build.js          # writes docs/
 node tools/serve.js    # preview on http://localhost:4321
+
+node tools/audit.js  http://localhost:4321/   # per-page console errors, 404s, overflow
+node tools/crawl.js  http://localhost:4321/   # every internal link across all 198 pages
+node tools/cmp.js    https://www.bbd.ge/ http://localhost:4321/   # element-by-element geometry diff
 ```
 
 `build.js` has no dependencies. The tooling under `tools/` needs
