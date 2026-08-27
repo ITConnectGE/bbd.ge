@@ -1,0 +1,25 @@
+node_modules/
+
+# raw HTML mirror of bbd.ge used by tools/extract.js (large, regenerate with tools/fetch-pages.js)
+cache/
+
+# build output (GitHub Actions rebuilds and publishes it)
+docs/
+
+# scratch output from the comparison tooling
+tools/shots/
+tools/sniff*/
+tools/raw_*.html
+tools/probe_*.txt
+tools/styles_*.json
+tmp_*
+
+# superseded first-pass scraping experiments
+WixScraper/
+site/
+scraper*.js
+clean-wix.js
+fix-links.js
+server.js
+.claude/
+tools/geom_*.txt
