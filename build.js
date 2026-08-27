@@ -101,6 +101,23 @@ const CARET = '<svg class="nav__caret" viewBox="0 0 10 6" aria-hidden="true"><pa
 const CHEV_L = '<svg viewBox="0 0 12 20" aria-hidden="true"><path d="M10 1L2 10l8 9"/></svg>';
 const CHEV_R = '<svg viewBox="0 0 12 20" aria-hidden="true"><path d="M2 1l8 9-8 9"/></svg>';
 
+/* A decorative background shape, positioned inside its section's 1600px inner
+   box. Geometry and colour are taken from the corresponding SVG on bbd.ge. */
+function shape(o) {
+  const kind = o.kind || 'diamond';
+  const cls = ['shape', 'shape--' + kind];
+  if (o.mx || o.my) cls.push('motion', 'motion--float');
+  const vars = (o.mx ? ';--mx:' + o.mx : '') + (o.my ? ';--my:' + o.my : '');
+  // the source SVGs use preserveAspectRatio="xMidYMid meet", so a diamond in a
+  // non-square box draws as the largest square that fits, centred
+  let { x, y, w, h } = o;
+  if (kind === 'diamond' && w !== h) {
+    const s = Math.min(w, h);
+    x += (w - s) / 2; y += (h - s) / 2; w = h = s;
+  }
+  return `<span class="${cls.join(' ')}" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;background:${o.c}${vars}"></span>`;
+}
+
 /* ---------------------------------------------------------------- chrome */
 function head(lang, depth, opts) {
   const rel = relFor(depth);
@@ -124,6 +141,7 @@ function head(lang, depth, opts) {
   <link rel="preload" href="${rel}assets/fonts/firago-book.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="${rel}assets/fonts/firago-medium.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${rel}assets/css/style.css">
+  <script>document.documentElement.className += ' js';</script>
 </head>
 <body>`;
 }
@@ -246,7 +264,7 @@ function footer(lang, depth, active) {
 function ctaSection(lang, depth) {
   const c = D[lang].home.cta;
   return `
-<section class="cta reveal">
+<section class="cta">
   <div class="cta__bg">${c.image ? `<img src="${relFor(depth)}assets/img/${imgFile(c.image.uri)}" alt="" loading="lazy">` : ''}</div>
   <div class="cta__inner">
     <h2 class="cta__title">${esc(c.title)}</h2>
@@ -265,17 +283,18 @@ function pageHome(lang) {
     `<a class="btn ${i === 0 ? 'btn--primary' : 'btn--ghost'}" href="${localise(lang, depth, c.href)}">${esc(c.label)}</a>`).join('');
 
   const features = d.home.features.map((f) => `
-      <article class="feature reveal">
+      <article class="feature motion motion--reveal-up">
         <div class="feature__icon">${f.icon}</div>
         <h3 class="feature__title">${esc(f.title)}</h3>
         <p class="feature__text">${f.textHtml || esc(f.text)}</p>
       </article>`).join('');
 
-  const aboutImgs = d.home.about.images.map((im) =>
-    `<img src="${rel}assets/img/${imgFile(im.uri)}" alt="${esc(im.alt || im.name)}" loading="lazy">`).join('');
+  // the left image wipes upward, the right one downward — as on the original
+  const aboutImgs = d.home.about.images.map((im, i) =>
+    `<img class="motion motion--reveal-${i === 0 ? 'up' : 'down'}" src="${rel}assets/img/${imgFile(im.uri)}" alt="${esc(im.alt || im.name)}" loading="lazy">`).join('');
 
   const svcCards = d.home.services.items.map((s) => `
-        <a class="svc-card reveal" href="${s.href ? localise(lang, depth, s.href) : href(depth, urlFor(lang, 'services'))}">
+        <a class="svc-card" href="${s.href ? localise(lang, depth, s.href) : href(depth, urlFor(lang, 'services'))}">
           <span class="svc-card__icon">${s.icon}</span>
           <span class="svc-card__title">${esc(s.title)}</span>
           <span class="svc-card__arrow">${ARROW_GLYPH}</span>
@@ -323,38 +342,38 @@ function pageHome(lang) {
 
   <section class="section about-block">
     <div class="about-block__inner">
-      <span class="diamond diamond--blue" style="width:230px;height:230px;left:-70px;top:20px"></span>
-      <span class="diamond diamond--lime" style="width:110px;height:110px;left:420px;top:300px"></span>
+      ${shape({ x: 32, y: 133, w: 464, h: 464, c: 'rgba(14, 95, 224, .05)', mx: '-60px' })}
+      ${shape({ x: 463, y: 603, w: 114, h: 114, c: 'rgba(190, 216, 100, .1)', my: '60px' })}
       <div class="about-block__grid">
-        <div class="about-block__copy reveal">
+        <div class="about-block__copy">
           <h2 class="about-block__title">${esc(d.home.about.title)}</h2>
           ${(d.home.about.textHtml || d.home.about.text.map(esc)).map((t) => `<p class="about-block__text">${t}</p>`).join('')}
           <p class="about-block__cta"><a class="arrow-link" href="${localise(lang, depth, d.home.about.cta.href)}">${esc(d.home.about.cta.label)}${ARROW_RIGHT}</a></p>
         </div>
-        <div class="about-block__media reveal">${aboutImgs}</div>
+        <div class="about-block__media">${aboutImgs}</div>
       </div>
     </div>
   </section>
 
   <section class="section svc">
     <div class="section__inner">
-      <h2 class="svc__title reveal">${esc(d.home.services.title)}</h2>
-      <div class="svc__intro reveal">${(d.home.services.introHtml || d.home.services.intro.map(esc)).map((t) => `<p>${t}</p>`).join('')}</div>
+      <h2 class="svc__title">${esc(d.home.services.title)}</h2>
+      <div class="svc__intro">${(d.home.services.introHtml || d.home.services.intro.map(esc)).map((t) => `<p>${t}</p>`).join('')}</div>
       <div class="svc__grid">${svcCards}</div>
-      <p class="svc__more reveal"><a class="arrow-link" href="${href(depth, urlFor(lang, 'services'))}">${esc(d.home.services.more)}${ARROW_RIGHT}</a></p>
+      <p class="svc__more"><a class="arrow-link" href="${href(depth, urlFor(lang, 'services'))}">${esc(d.home.services.more)}${ARROW_RIGHT}</a></p>
     </div>
   </section>
 
   <section class="section projects-block">
     <div class="projects-block__inner">
-      <span class="diamond diamond--blue" style="width:260px;height:260px;right:180px;top:-40px"></span>
-      <h2 class="projects-block__title reveal">${esc(d.home.projects.title)}</h2>
-      <div class="carousel reveal" data-carousel>
+      ${shape({ x: 942, y: 30, w: 626, h: 515, c: 'rgba(14, 95, 224, .1)' })}
+      <h2 class="projects-block__title">${esc(d.home.projects.title)}</h2>
+      <div class="carousel" data-carousel>
         <div class="carousel__track">${projCards}</div>
         <button class="carousel__nav carousel__nav--prev" type="button" aria-label="Previous">${CHEV_L}</button>
         <button class="carousel__nav carousel__nav--next" type="button" aria-label="Next">${CHEV_R}</button>
       </div>
-      <p class="svc__more reveal"><a class="arrow-link" href="${href(depth, urlFor(lang, 'projects'))}">${esc(d.home.projects.more)}${ARROW_RIGHT}</a></p>
+      <p class="svc__more"><a class="arrow-link" href="${href(depth, urlFor(lang, 'projects'))}">${esc(d.home.projects.more)}${ARROW_RIGHT}</a></p>
     </div>
   </section>
 
@@ -375,7 +394,7 @@ function pageAbout(lang) {
   const t = d.about.team;
 
   const cards = t.members.map((m, i) => `
-        <article class="team-card reveal">
+        <article class="team-card motion motion--float" style="--mx:-60px">
           <div class="team-card__photo">${m.photo ? `<img src="${rel}assets/img/${imgFile(m.photo.uri)}" alt="${esc(m.name)}" loading="lazy">` : ''}</div>
           <div class="team-card__body">
             <h3 class="team-card__name">${esc(m.name)}</h3>
@@ -390,18 +409,18 @@ function pageAbout(lang) {
 <main>
   <section class="section page-head">
     <div class="page-head__inner">
-      <span class="diamond diamond--blue" style="width:379px;height:379px;left:113px;top:210px"></span>
-      <span class="diamond diamond--lime" style="width:138px;height:138px;left:1258px;top:523px"></span>
+      ${shape({ x: 32, y: 128, w: 518, h: 518, c: 'rgba(14, 95, 224, .07)' })}
+      ${shape({ x: 1192, y: 486, w: 377, h: 192, c: 'rgba(190, 216, 100, .1)' })}
       <h1 class="page-head__title">${esc(d.about.intro.eyebrow)}</h1>
-      <div class="page-head__body reveal">${(d.about.intro.parasHtml && d.about.intro.parasHtml.length ? d.about.intro.parasHtml : d.about.intro.paras.map(esc)).map((p) => `<p>${p}</p>`).join('')}</div>
+      <div class="page-head__body motion motion--float" style="--mx:-60px">${(d.about.intro.parasHtml && d.about.intro.parasHtml.length ? d.about.intro.parasHtml : d.about.intro.paras.map(esc)).map((p) => `<p>${p}</p>`).join('')}</div>
     </div>
   </section>
 
   <section class="team" id="team">
     <div class="team__bg">${t.bg ? `<img src="${rel}assets/img/${imgFile(t.bg.uri)}" alt="" loading="lazy">` : ''}</div>
     <div class="team__inner">
-      <h2 class="team__title reveal">${esc(t.title)}</h2>
-      <p class="team__text reveal">${esc(t.text)}</p>
+      <h2 class="team__title motion motion--float" style="--mx:-60px">${esc(t.title)}</h2>
+      <p class="team__text motion motion--float" style="--mx:-60px">${esc(t.text)}</p>
       <div class="team__grid">${cards}</div>
       <button class="btn btn--outline team__more" type="button" data-team-more>${esc(t.more)}</button>
     </div>
@@ -440,8 +459,9 @@ function pageServices(lang) {
   if (listOpen) headHtml += '</ul>';
 
   const rows = d.services.items.map((s, i) => `
-  <section class="svc-row${i % 2 ? ' svc-row--flip' : ''} reveal" id="svc-${i + 1}">
+  <section class="svc-row${i % 2 ? ' svc-row--flip' : ''}" id="svc-${i + 1}">
     <div class="svc-row__inner">
+      ${i === 1 ? shape({ x: 420, y: 179, w: 380, h: 380, c: 'rgba(50, 121, 224, .05)' }) : ''}${i === 5 ? shape({ x: 601, y: 17, w: 296, h: 589, c: 'rgba(0, 38, 255, .05)' }) : ''}
       <div class="svc-row__text">
         <p class="svc-row__eyebrow">${esc(s.eyebrow)}</p>
         <h2 class="svc-row__title">${esc(s.title)}</h2>
@@ -455,10 +475,10 @@ function pageServices(lang) {
 <main>
   <section class="section page-head page-head--services">
     <div class="page-head__inner">
-      <span class="diamond diamond--blue" style="width:270px;height:270px;left:655px;top:191px"></span>
-      <span class="diamond diamond--lime" style="width:520px;height:520px;right:-140px;top:430px;border-radius:50%;transform:none"></span>
+      ${shape({ x: 602, y: 128, w: 396, h: 396, c: 'rgba(14, 95, 224, .05)' })}
+      ${shape({ kind: 'dome', x: 1065, y: 648, w: 503, h: 252, c: 'rgba(165, 188, 68, .1)' })}
       <h1 class="page-head__title">${esc(d.services.head.title)}</h1>
-      <div class="page-head__body page-head__body--narrow reveal">${headHtml}</div>
+      <div class="page-head__body page-head__body--narrow">${headHtml}</div>
     </div>
   </section>
   ${rows}
@@ -487,7 +507,7 @@ function pageProjects(lang) {
     (proj.fields || []).forEach((x) => { fieldMap[x.label] = x.value; });
     const year = (Object.values(fieldMap)[1] || '').trim();
     return `
-        <article class="project-card reveal" data-project data-status="${status}" data-year="${esc(year)}" data-scope="">
+        <article class="project-card" data-project data-status="${status}" data-year="${esc(year)}" data-scope="">
           <a href="${href(depth, urlFor(lang, 'project', p.slug))}">
             <div class="project-card__img">${p.image ? `<img src="${rel}assets/img/${imgFile(p.image.uri)}" alt="${esc(p.title)}" loading="lazy">` : ''}</div>
             <h2 class="project-card__title">${esc(p.title)}</h2>
@@ -555,8 +575,8 @@ function pageProject(lang, slug) {
   <div class="project__inner">
     <a class="project__back" href="${href(depth, urlFor(lang, 'projects'))}">${ARROW_RIGHT}<span>${esc(p.back)}</span></a>
     <div class="project__grid">
-      <div class="project__gallery reveal">${gallery}</div>
-      <div class="reveal">
+      <div class="project__gallery">${gallery}</div>
+      <div>
         <h1 class="project__title">${esc(p.title)}</h1>
         <div class="project__rule"></div>
         <p class="project__desc">${esc(p.desc)}</p>
@@ -604,7 +624,7 @@ function pageContact(lang) {
   <div class="contact__inner">
     <h1 class="contact__title">${esc(d.contact.title)}</h1>
     <div class="contact__grid">
-      <div class="reveal">
+      <div>
         <div class="contact__blocks">
           ${blk(1, 2)}
           ${blk(3, 4)}
@@ -616,7 +636,7 @@ function pageContact(lang) {
           <button class="btn btn--primary contact__submit" type="submit">${esc(d.contact.submit)}</button>
         </form>
       </div>
-      <div class="reveal">
+      <div>
         <iframe class="contact__map" title="Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
           src="https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&z=15&output=embed"></iframe>
       </div>
@@ -642,7 +662,7 @@ function pagePrivacy(lang) {
 
   const body = `
 <main class="legal">
-  <div class="legal__inner reveal">
+  <div class="legal__inner">
       ${html}
   </div>
 </main>`;

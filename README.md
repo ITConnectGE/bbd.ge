@@ -77,4 +77,7 @@ These are reproduced as they are on bbd.ge today, not bugs in the rebuild:
 * The Georgian and English pages list different office addresses.
 * The floating WhatsApp button has no target on the live site; here it links to
   the published landline, which is not a WhatsApp number.
+* The header is transparent and scrolls away with the page (it is not sticky) —
+  that is how the original behaves, so on mobile the menu button also scrolls
+  out of reach.
 * The footer copyright reads "© 2035 by bbd.ge".

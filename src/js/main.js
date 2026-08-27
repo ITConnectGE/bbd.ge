@@ -31,8 +31,8 @@
     document.addEventListener('click', function () { lang.classList.remove('is-open'); });
   }
 
-  /* ---------------------------------------------------------------- scroll reveal */
-  var reveals = document.querySelectorAll('.reveal');
+  /* ---------------------------------------------------------------- entrance motion */
+  var reveals = document.querySelectorAll('.motion');
   if (reveals.length) {
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (entries) {

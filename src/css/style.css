@@ -77,17 +77,17 @@ button { font: inherit; }
   height: 45px; padding: 0 36px; border-radius: 5px;
   font-family: var(--font-body); font-size: 18px; line-height: 1;
   border: 0; cursor: pointer; white-space: nowrap;
-  transition: filter .2s ease, background .2s ease, color .2s ease;
+  transition: background-color .4s ease, background-image .4s ease, border-color .4s ease, color .4s ease;
 }
 .btn--primary { background: linear-gradient(15deg, var(--blue-600) 0%, var(--blue-500) 100%); color: #fff; }
-.btn--primary:hover { filter: brightness(1.1); }
+.btn--primary:hover { background-image: linear-gradient(15deg, rgba(14, 95, 224, .8) 0%, rgba(50, 121, 224, .8) 100%); }
 .btn--ghost { background: #fff; color: var(--ink); border: 1px solid var(--ink); padding: 0 44px; }
-.btn--ghost:hover { background: var(--ink); color: #fff; }
+.btn--ghost:hover { background: rgba(217, 237, 131, .5); color: var(--ink); }
 .btn--lime {
   height: 34px; padding: 0 13px; border-radius: 99px; font-size: 14px;
   background: var(--lime-300); border: 1px solid var(--lime-600); color: var(--ink);
 }
-.btn--lime:hover { background: var(--lime-400); }
+.btn--lime:hover { background: rgba(217, 237, 131, .7); }
 .btn--outline { background: #fff; border: 1px solid var(--ink); color: var(--ink); font-size: 16px; height: 41px; padding: 0 28px; }
 .btn--outline:hover { background: var(--ink); color: #fff; }
 
@@ -102,9 +102,11 @@ button { font: inherit; }
 .arrow-link { height: 45px; }
 
 /* ---------------------------------------------------------------- header */
+/* transparent and scrolling away with the page, exactly like the Wix original —
+   the page's 300px grid shows straight through it */
 .site-header {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
-  background: #fff;
+  position: absolute; top: 0; left: 0; right: 0; z-index: 60;
+  background: transparent;
 }
 .site-header__inner { display: flex; align-items: center; justify-content: space-between; height: var(--header-h); }
 .logo { display: block; line-height: 0; }
@@ -160,12 +162,13 @@ button { font: inherit; }
 .section { position: relative; }
 .section__inner { padding: 96px var(--pad-x); max-width: var(--maxw); margin: 0 auto; position: relative; }
 
-/* decorative diamonds sit behind everything */
-.diamond { position: absolute; transform: rotate(45deg); pointer-events: none; z-index: 0; }
-.diamond--blue { background: #eaf0fd; }
-.diamond--lime { background: #f5f8ea; }
+/* decorative shapes sit behind everything; the colours are the brand hues at
+   the same low fill-opacity the original SVGs carry */
+.shape { position: absolute; pointer-events: none; z-index: 0; }
+.shape--diamond { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+.shape--dome { border-radius: 50% 50% 0 0 / 100% 100% 0 0; }
 .section > * , .section__inner > * { position: relative; z-index: 1; }
-.section__inner > .diamond, .about-block__inner > .diamond, .page-head__inner > .diamond, .projects-block__inner > .diamond { z-index: 0; }
+.section__inner > .shape, .about-block__inner > .shape, .page-head__inner > .shape, .projects-block__inner > .shape { z-index: 0; }
 
 /* ---------------------------------------------------------------- hero */
 .hero { position: relative; height: 100vh; min-height: 720px; display: flex; align-items: center; overflow: hidden; }
@@ -261,9 +264,9 @@ button { font: inherit; }
 .carousel__nav path { fill: none; stroke: currentColor; stroke-width: 2; }
 
 /* ---------------------------------------------------------------- CTA */
-.cta { position: relative; height: 900px; display: grid; place-items: center; overflow: hidden; }
+.cta { position: relative; height: 900px; display: grid; place-items: center; overflow: hidden; background: #fff; }
 .cta__bg { position: absolute; inset: 0; z-index: 0; }
-.cta__bg img { width: 100%; height: 100%; object-fit: cover; }
+.cta__bg img { width: 100%; height: 100%; object-fit: cover; opacity: .2; }
 .cta__inner { position: relative; z-index: 1; width: 100%; max-width: var(--maxw); text-align: center; padding: 0 var(--pad-x); }
 .cta__title { font-size: 40px; line-height: 1.2; margin-bottom: 8px; }
 .cta__text { max-width: 700px; margin: 0 auto; font-size: 16px; line-height: 1.6; color: var(--body); }
@@ -444,11 +447,35 @@ button { font: inherit; }
 .wa-float svg path { fill: #fff; }
 .wa-float:hover { filter: brightness(1.06); }
 
-/* ---------------------------------------------------------------- reveal */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-.reveal.is-in { opacity: 1; transform: none; }
+/* ---------------------------------------------------------------- motion
+   Wix's own two entrance animations, keyframe for keyframe: a clip-path wipe
+   ("reveal") and a slide with a fade ("float"). Both 1.2s, and applied only to
+   the handful of elements the original animates — everything else is static. */
+@keyframes motion-reveal-up {
+  0% { opacity: 0; animation-timing-function: step-end; }
+  0.0001% { opacity: 1; clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%); }
+  100% { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
+}
+@keyframes motion-reveal-down {
+  0% { opacity: 0; animation-timing-function: step-end; }
+  0.0001% { opacity: 1; clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%); }
+  100% { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
+}
+@keyframes motion-float-in {
+  0% { opacity: 0; animation-timing-function: step-end; }
+  0.0001% { opacity: 0; transform: translate(var(--mx, 0), var(--my, 0)); }
+  100% { opacity: 1; transform: translate(0, 0); }
+}
+
+/* only hide what JS can bring back */
+.js .motion { opacity: 0; }
+.motion.is-in { opacity: 1; animation-duration: 1.2s; animation-delay: .001s; animation-fill-mode: backwards; }
+.motion--reveal-up.is-in { animation-name: motion-reveal-up; animation-timing-function: cubic-bezier(.645, .045, .355, 1); }
+.motion--reveal-down.is-in { animation-name: motion-reveal-down; animation-timing-function: cubic-bezier(.645, .045, .355, 1); }
+.motion--float.is-in { animation-name: motion-float-in; animation-timing-function: cubic-bezier(.445, .05, .55, .95); }
+
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .motion, .motion.is-in { opacity: 1; animation: none; }
   html { scroll-behavior: auto; }
 }
 
@@ -535,10 +562,15 @@ button { font: inherit; }
 
 /* decorative shapes must never widen the page */
 .page-head, .about-block, .projects-block, .svc, .section { overflow-x: clip; }
-@media (max-width: 1024px) { .diamond { display: none; } }
+@media (max-width: 1024px) { .shape { display: none; } }
 
 /* justified text opens up ugly rivers on narrow screens */
 @media (max-width: 700px) {
   .hero__text, .feature__text, .about-block__text, .page-head__body,
   .svc-row__body, .team__text, .project__desc, .svc__intro { text-align: left; }
 }
+
+/* the services rows host two of the decorative shapes */
+.svc-row__inner { position: relative; }
+.svc-row__inner > .shape { z-index: 0; }
+.svc-row__text, .svc-row__media { position: relative; z-index: 1; }
