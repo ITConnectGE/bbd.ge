@@ -275,7 +275,7 @@ function pageHome(lang) {
     `<img src="${rel}assets/img/${imgFile(im.uri)}" alt="${esc(im.alt || im.name)}" loading="lazy">`).join('');
 
   const svcCards = d.home.services.items.map((s) => `
-        <a class="svc-card reveal" href="${localise(lang, depth, s.href)}">
+        <a class="svc-card reveal" href="${s.href ? localise(lang, depth, s.href) : href(depth, urlFor(lang, 'services'))}">
           <span class="svc-card__icon">${s.icon}</span>
           <span class="svc-card__title">${esc(s.title)}</span>
           <span class="svc-card__arrow">${ARROW_GLYPH}</span>
