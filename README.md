@@ -18,7 +18,7 @@ data/                 extracted site content (one JSON per language)
   status.json         which projects are finished vs. in progress
   images.json         every image the site references
   maps.json           centre/zoom of every Google Map on the site
-  privacy.json        translated privacy-policy copy (overrides the mirror)
+  privacy.json        the real privacy policy (overrides the mirrored text)
 src/
   css/style.css       the whole design system
   js/main.js          mobile nav, carousel, project filters, contact form
@@ -69,11 +69,30 @@ Set `PDF_BASE` to a URL (e.g. that release) to link out instead of bundling.
 ## The Google Maps
 
 Wix never puts the map location in the HTML — it hands it to the map iframe at
-runtime. `tools/fetch-maps.js` reads the centre and zoom back off the live
-`google.maps.Map` instance on all 61 pages that have a map and writes
-`data/maps.json`; the build then renders Google's keyless embed at those exact
-coordinates. 16 of the 60 projects have no location set in the Wix CMS and sit
-at 0,0 — that is what the original shows too.
+runtime. `tools/fetch-maps.js` reads it back off the live `google.maps` objects
+on all 61 pages that have a map and writes `data/maps.json`: centre, zoom, the
+marker title, the Directions link, and Wix's style array (`_style`).
+
+The build then renders the maps one of two ways:
+
+* **With a Maps JS API key** — set `GOOGLE_MAPS_KEY` and the maps are drawn
+  through the Maps JavaScript API exactly as the original draws them: Wix's own
+  styling (mint landscape, cyan water, no POI or transit, desaturated roads),
+  the marker, and its info window with the title and a Directions link.
+* **Without one** — the build falls back to Google's keyless `output=embed`
+  iframe. Right place and right zoom, but Google's default styling and no info
+  window. This is what ships today.
+
+```bash
+GOOGLE_MAPS_KEY=AIza... node build.js
+```
+
+Restrict the key to the site's domains (HTTP referrer restriction) and to the
+*Maps JavaScript API*. To build with it in CI, add the key as a repository
+secret and pass it through in `.github/workflows/deploy.yml`.
+
+16 of the 60 projects have no location set in the Wix CMS and sit at 0,0 —
+that is what the original shows too. They get no marker.
 
 ## Deploy
 
@@ -98,6 +117,18 @@ node tools/fetch-assets.js   # download every referenced image (skips files alre
 node tools/fetch-maps.js     # read every map's centre/zoom off the live site
 ```
 
+## The privacy policy
+
+The original page is Wix's *template* text explaining how to write a privacy
+policy — it is not one. `data/privacy.json` replaces it with a real policy in
+all three languages, written from what this site actually does: a `mailto:`
+call-request form, embedded Google Maps, a WhatsApp link, no analytics and no
+cookies of its own.
+
+Two things still need a human: the full legal entity name and registration
+number, and a lawyer's review. Update `updated` in that file whenever the text
+changes — it is rendered as the "last updated" line.
+
 ## Known carry-overs from the original site
 
 These are reproduced as they are on bbd.ge today, not bugs in the rebuild:
@@ -107,10 +138,6 @@ These are reproduced as they are on bbd.ge today, not bugs in the rebuild:
   `youtube.com/user/Wix`).
 * The home page "Let's work together" section still carries Wix placeholder
   copy in English on all three languages.
-* The privacy policy is still Wix's *template* text — it explains how to write
-  a privacy policy rather than being one. It has been translated into Georgian
-  and Russian (`data/privacy.json`) and Wix's link to its own help article
-  removed, but it needs replacing with a real policy.
 * The projects page year and work-type filters have no data behind them, so
   they only show their placeholder option. The status filter works.
 * The Georgian and English pages list different office addresses.

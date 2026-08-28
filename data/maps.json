@@ -1,18 +1,160 @@
 {
+ "_style": [
+  {
+   "elementType": "labels.text.fill",
+   "featureType": "administrative",
+   "stylers": [
+    {
+     "color": "#444444"
+    }
+   ]
+  },
+  {
+   "elementType": "all",
+   "featureType": "landscape",
+   "stylers": [
+    {
+     "color": "#f2f2f2"
+    }
+   ]
+  },
+  {
+   "elementType": "geometry.fill",
+   "featureType": "landscape",
+   "stylers": [
+    {
+     "color": "#e7fff4"
+    }
+   ]
+  },
+  {
+   "elementType": "all",
+   "featureType": "poi",
+   "stylers": [
+    {
+     "visibility": "off"
+    }
+   ]
+  },
+  {
+   "elementType": "all",
+   "featureType": "road",
+   "stylers": [
+    {
+     "saturation": -100
+    },
+    {
+     "lightness": 45
+    }
+   ]
+  },
+  {
+   "elementType": "labels.text",
+   "featureType": "road",
+   "stylers": [
+    {
+     "color": "#c69665"
+    }
+   ]
+  },
+  {
+   "elementType": "labels.text.stroke",
+   "featureType": "road",
+   "stylers": [
+    {
+     "weight": 0.01
+    }
+   ]
+  },
+  {
+   "elementType": "all",
+   "featureType": "road.highway",
+   "stylers": [
+    {
+     "visibility": "simplified"
+    }
+   ]
+  },
+  {
+   "elementType": "labels.icon",
+   "featureType": "road.arterial",
+   "stylers": [
+    {
+     "visibility": "off"
+    }
+   ]
+  },
+  {
+   "elementType": "all",
+   "featureType": "transit",
+   "stylers": [
+    {
+     "visibility": "off"
+    }
+   ]
+  },
+  {
+   "elementType": "all",
+   "featureType": "water",
+   "stylers": [
+    {
+     "color": "#46bcec"
+    },
+    {
+     "visibility": "on"
+    }
+   ]
+  },
+  {
+   "elementType": "geometry.fill",
+   "featureType": "water",
+   "stylers": [
+    {
+     "color": "#5cddff"
+    }
+   ]
+  },
+  {
+   "elementType": "labels.text.fill",
+   "featureType": "water",
+   "stylers": [
+    {
+     "color": "#c69665"
+    }
+   ]
+  },
+  {
+   "elementType": "labels.text.stroke",
+   "featureType": "water",
+   "stylers": [
+    {
+     "weight": 0.01
+    }
+   ]
+  }
+ ],
  "contact": {
   "lat": 41.7229251,
   "lng": 44.7709661,
-  "zoom": 16
+  "zoom": 16,
+  "title": "BBD",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=2%20Davit%20Gamrekeli%20St%2C%20T%26%2339%3Bbilisi%200101%2C%20Georgia"
  },
  "projects/matiani-by-biograpi-": {
   "lat": 41.7293282,
   "lng": 44.7871251,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Matiani by Biograpi",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=47%20Akaki%20Tsereteli%20Ave%2C%20T%26%2339%3Bbilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/YBMZeN44XTAkxZVa6"
  },
  "projects/shantani-by-biograpi-": {
   "lat": 41.7232317,
   "lng": 44.7871235,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Shantani by Biograpi",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=2%20Akaki%20Tsereteli%20Ave%2C%20T%26%2339%3Bbilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/te7QuP2dcD3CbPNv6"
  },
  "projects/dariali-tunnel": {
   "lat": 0,
@@ -22,157 +164,250 @@
  "projects/hisani-towers": {
   "lat": 41.685061,
   "lng": 44.8373041,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Hisni Towers by Biograpi",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=1%20Ujarma%20II%20Turn%2C%20T%26%2339%3Bbilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/LPNnH751Bh3jwxfk7"
  },
  "projects/sakeni": {
   "lat": 41.7275177,
   "lng": 44.7605012,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Sakeni",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=25%20Vazha%20Pshavela%20Ave%2C%20T%26%2339%3Bbilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/q5FZo49nPgLcASTq5"
  },
  "projects/mozaika": {
   "lat": 41.7333537,
   "lng": 44.7449,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Mozaika by Biograpi",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=Tamaz%20Nadareishvili%20St%2C%20T%26%2339%3Bbilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/ESddfRcYpmPgKP1M9"
  },
  "projects/tunnel-rikoti": {
-  "lat": 42.1102552,
-  "lng": 43.3620755,
-  "zoom": 14
- },
- "projects/tunnel-rikoti-": {
   "lat": 42.1073261,
   "lng": 43.3620755,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Tunnel Rikoti",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=Tbilisi%20-%20Senaki%20-%20Leselidze%20Hwy%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/sVEgMXwEUhVeLRYA7"
+ },
+ "projects/tunnel-rikoti-": {
+  "lat": 42.1100005,
+  "lng": 43.3620755,
+  "zoom": 14,
+  "title": "Tunnel Rikoti",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=Tbilisi%20-%20Senaki%20-%20Leselidze%20Hwy%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/sVEgMXwEUhVeLRYA7"
  },
  "projects/monday-hotel": {
   "lat": 41.7119679,
   "lng": 44.7924345,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Monday Hotel",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=22%20Ushangi%20Chkheidze%20Street%2C%20T%26%2339%3Bbilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/6NxewbA8toHVWzp97"
  },
  "projects/smart-soft-office": {
   "lat": 41.6938026,
   "lng": 44.8015168,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Smart Soft Office",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=Tbilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/p7KCmjQ3qNA8Ut6ZA"
  },
  "projects/ibis-ortachala": {
   "lat": 41.6829481,
   "lng": 44.8267995,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Ibis Ortachala",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=1%20Vladimer%20Tsitlanadze%20St%2C%20T%26%2339%3Bbilisi%200114%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/7dXRpB3BAZrJrN656"
  },
  "projects/tbilisi-hills-gold-%26-residence": {
-  "lat": 41.6583193,
+  "lat": 41.661269,
   "lng": 44.8340649,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Tbilisi Hills Golf &amp; Residence",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=MR5M%2B8JG%2C%20Tbilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/MNB3NopzNrKM6kjk8"
  },
  "projects/archi-gldani-office": {
   "lat": 41.7934793,
   "lng": 44.8097157,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Archi Gldani Office",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=QRR5%2B6WC%2C%20%E1%83%AE%E1%83%98%E1%83%96%E1%83%90%E1%83%91%E1%83%90%E1%83%95%E1%83%A0%E1%83%90%E1%83%A1%20%E1%83%A5%E1%83%A3%E1%83%A9%E1%83%90%2C%20T%26%2339%3Bbilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/ioZTaHP2NsydZCeG6"
  },
  "projects/archi-dighomi-cd-blocks": {
   "lat": 41.7970493,
   "lng": 44.7644621,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Archi Dighomi CD Blocks",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=QQV7%2BJQW%2C%20Parnavaz%20Mepe%20Ave%2C%20T%26%2339%3Bbilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/acdQJhzq2ofzn4kn6"
  },
  "projects/dinamo-business-center": {
   "lat": 41.7231064,
   "lng": 44.7897418,
-  "zoom": 14
+  "zoom": 14,
+  "title": "DINAMO Business Center",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=2%20Akaki%20Tsereteli%20Ave%2C%20T%26%2339%3Bbilisi%200112%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/eA2LkUymHqzBnaMe9"
  },
  "projects/radisson-red-hotel": {
   "lat": 41.7052071,
   "lng": 44.800383,
-  "zoom": 14
+  "zoom": 14,
+  "title": "RADISSON RED HOTEL",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=44%20Davit%20Aghmashenebeli%20Ave%2C%20T%26%2339%3Bbilisi%200102%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/hUnoZC4iK2G5DVVc8"
  },
  "projects/archi-isani-sales-office": {
   "lat": 41.6819469,
   "lng": 44.8399529,
-  "zoom": 14
+  "zoom": 14,
+  "title": "ARCHI ISANI SALES OFFICE",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=10%20Navtlughi%20St%2C%20T%26%2339%3Bbilisi%200144%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/K2ZqMULMu77F3LwG9"
  },
  "projects/batumi-terminal": {
   "lat": 41.6911733,
   "lng": 44.7728037,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Batumi Terminal",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=district%2C%204%20Besiki%20St%2C%20T%26%2339%3Bbilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/WaPzKTw7ZuFjLEVr7"
  },
  "projects/archi-gldani-": {
   "lat": 41.7905356,
   "lng": 44.8097157,
-  "zoom": 14
+  "zoom": 14,
+  "title": "ARCHI GLDANI",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=QRR5%2B6WC%2C%20%E1%83%AE%E1%83%98%E1%83%96%E1%83%90%E1%83%91%E1%83%90%E1%83%95%E1%83%A0%E1%83%90%E1%83%A1%20%E1%83%A5%E1%83%A3%E1%83%A9%E1%83%90%2C%20T'bilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/ioZTaHP2NsydZCeG6"
  },
  "projects/archi-central-park-": {
-  "lat": 41.7210249,
+  "lat": 41.7237155,
   "lng": 44.7465592,
-  "zoom": 14
+  "zoom": 14,
+  "title": "ARCHI CENTRAL PARK",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=0177%2C%2013%20Mikheil%20Tamarashvili%20St%2C%20T'bilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/CppLrhAPASzJ6Pvq5"
  },
  "projects/archi-isani-e-block": {
-  "lat": 41.6851872,
+  "lat": 41.6822386,
   "lng": 44.8419514,
-  "zoom": 14
+  "zoom": 14,
+  "title": "ARCHI ISANI E Block",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=23%2F026%20Ekimi%20Ln%2C%20T'bilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/Z3WfL9E7MyYNBGHz6"
  },
  "projects/restaurant-in-tserovani": {
   "lat": 41.9030639,
   "lng": 44.669537,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Restaurant in Tserovani",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=Usakhelo%20Gza%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/rg1tCpemZRzyHGMU9"
  },
  "projects/hotel-on-akhundov-street": {
-  "lat": 41.6912368,
+  "lat": 41.6909804,
   "lng": 44.8128674,
-  "zoom": 14
+  "zoom": 14,
+  "title": "HOTEL ON AKHUNDOV STREET",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=13%2F3%20Mirza%20Fatali%20Akhudovi%2C%20T'bilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/FK1gTMydu1vAQmgv7"
  },
  "projects/tunnel-batumi-": {
-  "lat": 41.6355516,
+  "lat": 41.635295,
   "lng": 41.6795882,
-  "zoom": 14
+  "zoom": 14,
+  "title": "TUNNEL BATUMI",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=%E1%83%A1%202%2C%20Batumi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/7wfg4Zv4ofNrjmyRA"
  },
  "projects/iliyard": {
-  "lat": 41.714742,
+  "lat": 41.7144857,
   "lng": 44.7555256,
-  "zoom": 14
+  "zoom": 14,
+  "title": "ILIYARD",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=39a%20Ilia%20Chavchavadze%20Avenue%2C%20T'bilisi%200179%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/FTS7bThuyCoRHMdGA"
  },
  "projects/archi-varketili-2": {
-  "lat": 41.6966278,
+  "lat": 41.6963715,
   "lng": 44.8796211,
-  "zoom": 14
+  "zoom": 14,
+  "title": "ARCHI VARKETILI 2",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=4%20%E1%83%98%E1%83%A0%E1%83%98%E1%83%9C%E1%83%90%20%E1%83%A8%E1%83%A2%E1%83%94%E1%83%9C%E1%83%91%E1%83%94%E1%83%A0%E1%83%92%E1%83%98%E1%83%A1%2C%20T'bilisi%200163%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/efHh7H3eS6yqon4g9"
  },
  "projects/archi-saburtalo-b-block": {
-  "lat": 41.7241552,
+  "lat": 41.723899,
   "lng": 44.707314,
-  "zoom": 14
+  "zoom": 14,
+  "title": "ARCHI SABURTALO B Block",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=13%E1%83%91%20Elizbar%20Mindeli%20St%2C%20T'bilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/wTzNbdSfPD7y2QaD7"
  },
  "projects/vazha-pshavela-apartment-%2320": {
-  "lat": 41.7275833,
+  "lat": 41.7273271,
   "lng": 44.7299951,
-  "zoom": 14
+  "zoom": 14,
+  "title": "VAZHA-PSHAVELA APARTMENT #20",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=PPFH%2BVX5%2C%20Tbilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/7uP9MuSTZhKcHuD6A"
  },
  "projects/archi-wood": {
-  "lat": 41.7789169,
+  "lat": 41.7786609,
   "lng": 44.777586,
-  "zoom": 14
+  "zoom": 14,
+  "title": "ARCHI WOOD",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=4%20Konstantine%20Chachava%20St%2C%20T'bilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/HmARh97x1jDjt1zi6"
  },
  "projects/republic-24-restaurant": {
-  "lat": 41.7066151,
+  "lat": 41.7063588,
   "lng": 44.7916982,
-  "zoom": 14
+  "zoom": 14,
+  "title": "REPUBLIC 24 RESTAURANT",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=6%20Rose%20Revolution%20Square%2C%20T'bilisi%200108%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/6k23AfacvZ66fb8E7"
  },
  "projects/kutaisi-airport-terminal-2": {
-  "lat": 42.1820109,
+  "lat": 42.1846821,
   "lng": 42.4655269,
-  "zoom": 14
+  "zoom": 14,
+  "title": "KUTAISI AIRPORT TERMINAL 2",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=5FJ8%2BR62%20Kutaisi%20International%20Airport%20(KUT)%2C%20Zeda%20Bashi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/WqNTtVz6c52FNEHB6"
  },
  "projects/tunnel-mestia": {
-  "lat": 43.0359519,
+  "lat": 43.035701,
   "lng": 42.6883624,
-  "zoom": 14
+  "zoom": 14,
+  "title": "TUNNEL MESTIA",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=Zugdidi-Jvari-Mestia-Lasdili%2C%20Mestia%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/LooWW9fD7BSg7y6G8"
  },
  "projects/tunnel-abastumani": {
-  "lat": 41.7534935,
+  "lat": 41.7532374,
   "lng": 42.833443,
-  "zoom": 14
+  "zoom": 14,
+  "title": "TUNNEL ABASTUMANI",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=Residential%20House%20Cultural%20Heritage%2C%20Kutaisi-Baghdati-Abastumani-Benara%2C%20Abastumani%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/LWU2WWdSrheaEFD8A"
  },
  "projects/medical-center-reproart": {
   "lat": 41.7254611,
   "lng": 44.7679492,
-  "zoom": 14
+  "zoom": 14,
+  "title": "MEDICAL CENTER REPROART",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=23%20Sulkhan%20Tsintsadze%20St%2C%20T'bilisi%200160%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/TK1CW13QHUTvdjq57"
  },
  "projects/sun-petroleum-georgia-stores": {
   "lat": 0,
@@ -182,57 +417,90 @@
  "projects/casino-alliance-batumi": {
   "lat": 41.6540733,
   "lng": 41.6369994,
-  "zoom": 14
+  "zoom": 14,
+  "title": "CASINO ALLIANCE BATUMI",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=Ninoshvili%20%2F%20Zhgenti%20Street%2C%20Batumi%206010%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/6ESyM7Tmaeyai52R8"
  },
  "projects/biltmore-hotel-meeting-room": {
   "lat": 41.702223,
   "lng": 44.7943976,
-  "zoom": 14
+  "zoom": 14,
+  "title": "BILTMORE HOTEL MEETING ROOM",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=29%20Shota%20Rustaveli%20Ave%2C%20T%26%2339%3Bbilisi%200108%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/zoxvz8Kbo376Y42FA"
  },
  "projects/casino-jewel-tbilisi": {
-  "lat": 41.7051707,
+  "lat": 41.702223,
   "lng": 44.7943976,
-  "zoom": 14
+  "zoom": 14,
+  "title": "CASINO JEWEL TBILISI",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=29%20Shota%20Rustaveli%20Ave%2C%20T'bilisi%200108%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/zoxvz8Kbo376Y42FA"
  },
  "projects/biltmore-hotel": {
-  "lat": 41.7051707,
+  "lat": 41.702223,
   "lng": 44.7943976,
-  "zoom": 14
+  "zoom": 14,
+  "title": "BILTMORE HOTEL",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=29%20Shota%20Rustaveli%20Ave%2C%20T'bilisi%200108%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/zoxvz8Kbo376Y42FA"
  },
  "projects/airplane-technics": {
   "lat": 41.6724883,
   "lng": 44.9646437,
-  "zoom": 14
+  "zoom": 14,
+  "title": "AIRPLANE TECHNICS",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=MX97%2BRV6%20Tbilisi%20International%20Airport%2C%20T%26%2339%3Bbilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/5qxAorDwUoqwACANA"
  },
  "projects/east-point": {
   "lat": 41.6926998,
   "lng": 44.8990145,
-  "zoom": 14
+  "zoom": 14,
+  "title": "EAST POINT",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=2%20AleKsandre%20Tvalchrelidze%20St%2C%20T%26%2339%3Bbilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/xbRc8yft68e6L1qB7"
  },
  "projects/shekvetili-concert-hall": {
   "lat": 41.9414749,
   "lng": 41.7747888,
-  "zoom": 14
+  "zoom": 14,
+  "title": "SHEKVETILI CONCERT HALL",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=E70%20Village%20Natanebi%20(Shekvetili%2C%20Ozurgeti%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/tNKrcR4B72VwncPA8"
  },
  "projects/green-cape-botanico": {
   "lat": 41.6899039,
   "lng": 41.7050048,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Green Cape Botanico",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=MPQ3%2BQX%2C%20Batumi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/aHdDDyc2TB7SC1er6"
  },
  "projects/archi-tamarashvili-offices": {
   "lat": 41.7237155,
   "lng": 44.7465592,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Archi Tamarashvili Offices",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=0177%2C%2013%20Mikheil%20Tamarashvili%20St%2C%20T'bilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/CppLrhAPASzJ6Pvq5"
  },
  "projects/lisi-hills-residence": {
   "lat": 41.7518594,
   "lng": 44.7611143,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Lisi Hills Residence",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=QQ26%2BJCP%2C%20Mukhran%20Machavariani%20St%2C%20T%26%2339%3Bbilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/fyKsfgZDHUr7w1NL8"
  },
  "projects/tbilisi-sea-mall": {
   "lat": 41.7355412,
   "lng": 44.8409932,
-  "zoom": 14
+  "zoom": 14,
+  "title": "Tbilisi Sea Mall",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=PRPR%2B8M%20Ivertubani%20Park%2C%20T%26%2339%3Bbilisi%2C%20Georgia",
+  "share": "https://maps.app.goo.gl/42g5MrVg76vK6yuS9"
  },
  "projects/stepantsminda-gveleti": {
   "lat": 0,

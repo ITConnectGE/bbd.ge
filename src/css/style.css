@@ -596,3 +596,14 @@ button { font: inherit; }
 .svc-row__inner { position: relative; }
 .svc-row__inner > .shape { z-index: 0; }
 .svc-row__text, .svc-row__media { position: relative; z-index: 1; }
+
+/* Maps rendered through the JS API (a keyless embed uses the same boxes) */
+.gmap { background: #e7fff4; }
+.gmap__info { font-family: var(--font-body); font-size: 14px; line-height: 1.5; color: var(--ink); }
+.gmap__info p { margin: 0 0 4px; }
+.gmap__info a { color: var(--blue-600); text-decoration: underline; }
+
+/* privacy policy and other long-form legal copy */
+.legal__meta { font-size: 14px; color: var(--body-2); margin-bottom: 24px; }
+.legal ul { list-style: disc; padding-left: 26px; margin: 0 0 14px; }
+.legal li { font-size: 16px; line-height: 1.7; color: var(--body); margin-bottom: 6px; }

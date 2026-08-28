@@ -1,6 +1,7 @@
-// Harvests the Google Map centre/zoom/marker from every bbd.ge page that has one.
-// The location never appears in the HTML — Wix passes it to the map iframe at
-// runtime — so we read it back off the live google.maps.Map instance.
+// Harvests everything about the Google Map on every bbd.ge page that has one:
+// centre, zoom, the custom style array, the marker title and the info-window
+// links. None of it appears in the HTML — Wix builds the map at runtime — so we
+// read it back off the live google.maps objects inside the map iframe.
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
@@ -21,13 +22,22 @@ const readMap = async (page) => {
         if (!m || typeof m.getCenter !== 'function') return null;
         const c = m.getCenter();
         const out = { lat: +c.lat().toFixed(7), lng: +c.lng().toFixed(7), zoom: m.getZoom() };
-        // the marker carries the address label shown in the info window
-        try {
-          const mk = window.markers || window.mapMarkers || [];
-          const arr = Array.isArray(mk) ? mk : [mk];
-          const first = arr.filter(Boolean)[0];
-          if (first && first.getTitle) out.title = first.getTitle();
-        } catch (e) {}
+        try { out.styles = m.get('styles') || null; } catch (e) {}
+
+        const mk = [].concat(window.googleMapsMarkerInstances || []).filter(Boolean)[0];
+        if (mk && mk.getTitle) out.title = String(mk.getTitle()).trim();
+
+        const iw = [].concat(window.googleMapsInfoWindowInstances || []).filter(Boolean)[0];
+        if (iw) {
+          let html = null;
+          try { const c2 = iw.getContent(); html = c2 && c2.outerHTML ? c2.outerHTML : String(c2 || ''); } catch (e) {}
+          if (html) {
+            const dir = html.match(/href="(https:\/\/www\.google\.com\/maps\/dir\/[^"]*)"/);
+            if (dir) out.directions = dir[1].replace(/&amp;/g, '&');
+            const share = html.match(/href="(https:\/\/maps\.app\.goo\.gl\/[^"]*)"/);
+            if (share) out.share = share[1];
+          }
+        }
         return out;
       });
       if (o) return o;
@@ -37,7 +47,10 @@ const readMap = async (page) => {
 };
 
 (async () => {
-  const existing = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf8')) : {};
+  const prev = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf8')) : {};
+  const data = {};
+  let styles = prev._style || null;
+
   const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
   const page = await browser.newPage();
   await page.setViewport({ width: 1600, height: 1000 });
@@ -45,7 +58,6 @@ const readMap = async (page) => {
   let done = 0, found = 0;
   for (const t of targets) {
     done++;
-    if (existing[t.key]) { found++; continue; }
     try {
       await page.goto(t.url, { waitUntil: 'networkidle2', timeout: 90000 });
       await page.evaluate(async () => {
@@ -56,15 +68,18 @@ const readMap = async (page) => {
         await new Promise(r => setTimeout(r, 1500));
         m = await readMap(page);
       }
-      if (m) { existing[t.key] = m; found++; }
-      else console.log('  ! no map', t.key);
+      if (m) {
+        // the style array is identical on every map; keep one copy
+        if (m.styles && !styles) styles = m.styles;
+        delete m.styles;
+        data[t.key] = m;
+        found++;
+      } else console.log('  ! no map', t.key);
     } catch (e) { console.log('  X', t.key, e.message); }
-    if (done % 10 === 0) {
-      console.log(`  ${done}/${targets.length} (${found} with maps)`);
-      fs.writeFileSync(OUT, JSON.stringify(existing, null, 1));
-    }
+    if (done % 10 === 0) console.log(`  ${done}/${targets.length} (${found} with maps)`);
   }
-  fs.writeFileSync(OUT, JSON.stringify(existing, null, 1));
-  console.log('maps captured:', Object.keys(existing).length, 'of', targets.length);
+
+  fs.writeFileSync(OUT, JSON.stringify(Object.assign({ _style: styles }, data), null, 1));
+  console.log('maps captured:', found, 'of', targets.length, '| style rules:', styles ? styles.length : 0);
   await browser.close();
 })();

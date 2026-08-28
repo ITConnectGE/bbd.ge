@@ -27,6 +27,11 @@ const MAPS = JSON.parse(fs.readFileSync(path.join(DATA, 'maps.json'), 'utf8'));
 // translated privacy-policy copy, overriding what the extractor mirrors
 const PRIVACY = JSON.parse(fs.readFileSync(path.join(DATA, 'privacy.json'), 'utf8'));
 
+/* Set GOOGLE_MAPS_KEY to render the maps through the Maps JS API, which is the
+   only way to reproduce the original's styling, marker and info window. Left
+   empty, the build emits Google's keyless embed instead — see mapEmbed(). */
+const GOOGLE_MAPS_KEY = (process.env.GOOGLE_MAPS_KEY || '').trim();
+
 // status.json keys are the Georgian labels in DOM order: All / done / ongoing
 const statusKeys = Object.keys(STATUS);
 const ONGOING = new Set(STATUS[statusKeys[2]] || []);
@@ -132,17 +137,43 @@ function shape(o) {
   return `<span class="${cls.join(' ')}" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;background:${o.c}${vars}"></span>`;
 }
 
-/* Google's keyless embed. It only accepts a query, so we hand it the exact
-   coordinates and zoom the original map reports. */
+/* Two ways to draw a map.
+
+   With a Google Maps JS API key (GOOGLE_MAPS_KEY), we reproduce the original
+   exactly: same centre and zoom, Wix's own style array, the marker, and its
+   info window with the title and a Directions link.
+
+   Without one, we fall back to Google's keyless embed — right place, right
+   zoom, but Google's default styling and no info window. That keeps the site
+   working before a key exists; drop the key in and every map upgrades. */
 function mapEmbed(key, lang, cls, title) {
   const m = MAPS[key];
   if (!m) return '';
-  const q = m.lat + ',' + m.lng;
   // Wix labels its maps in English on the Georgian pages too — only /ru differs
   const hl = lang === 'ru' ? 'ru' : 'en';
-  const src = 'https://www.google.com/maps?q=' + encodeURIComponent(q)
+
+  if (GOOGLE_MAPS_KEY) {
+    const cfg = { lat: m.lat, lng: m.lng, zoom: m.zoom };
+    if (m.title) cfg.title = m.title;
+    if (m.directions) cfg.directions = m.directions;
+    cfg.dirLabel = { ka: 'მარშრუტი', en: 'Directions', ru: 'Маршрут' }[lang];
+    return `<div class="${cls} gmap" role="img" aria-label="${esc(title)}" data-gmap='${esc(JSON.stringify(cfg))}'></div>`;
+  }
+
+  const src = 'https://www.google.com/maps?q=' + encodeURIComponent(m.lat + ',' + m.lng)
     + '&z=' + m.zoom + '&hl=' + hl + '&output=embed';
   return `<iframe class="${cls}" title="${esc(title)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${src}"></iframe>`;
+}
+
+/* The Maps JS API loader plus the shared style array, emitted once per page
+   that actually has a map. */
+function mapScript(lang, depth) {
+  if (!GOOGLE_MAPS_KEY) return '';
+  const hl = lang === 'ru' ? 'ru' : 'en';
+  return `
+<script>window.BBD_MAP_STYLE=${JSON.stringify(MAPS._style || [])};</script>
+<script src="${relFor(depth)}assets/js/maps.js" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(GOOGLE_MAPS_KEY)}&language=${hl}&loading=async&callback=bbdInitMaps" defer></script>`;
 }
 
 /* The hero's bottom edge is a four-layer wave, each layer 20px taller and
@@ -235,7 +266,7 @@ function header(lang, depth, active) {
 </div>`;
 }
 
-function footer(lang, depth, active) {
+function footer(lang, depth, active, extraScripts) {
   const d = D[lang];
   const nav = d.home.chrome.nav;
   const rel = relFor(depth);
@@ -288,7 +319,7 @@ function footer(lang, depth, active) {
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/995322222312" target="_blank" rel="noopener">${d.home.chrome.whatsapp.icon}<span>${esc(d.home.chrome.whatsapp.label)}</span></a>
-<script src="${relFor(depth)}assets/js/main.js" defer></script>
+<script src="${relFor(depth)}assets/js/main.js" defer></script>${extraScripts || ''}
 </body>
 </html>`;
 }
@@ -627,7 +658,7 @@ function pageProject(lang, slug) {
     title: `${p.title} | BBD`,
     description: p.desc,
     ogImage: p.gallery[0] || (li && li.image && li.image.uri),
-  }) + header(lang, depth, 'projects') + body + footer(lang, depth, 'projects');
+  }) + header(lang, depth, 'projects') + body + footer(lang, depth, 'projects', mapScript(lang, depth));
 }
 
 /* ---------------------------------------------------------------- contact */
@@ -682,7 +713,7 @@ function pageContact(lang) {
     key: 'contact',
     title: `${d.contact.title} | BBD`,
     description: (b[2] || [''])[0].replace(/\n/g, ' '),
-  }) + header(lang, depth, 'contact') + body + footer(lang, depth, 'contact');
+  }) + header(lang, depth, 'contact') + body + footer(lang, depth, 'contact', mapScript(lang, depth));
 }
 
 /* ---------------------------------------------------------------- privacy */
@@ -692,9 +723,11 @@ function pagePrivacy(lang) {
   // half-English text the extractor mirrors from Wix
   const blocks = PRIVACY[lang] || d.privacy.blocks;
   const html = blocks.map((b) => {
-    if (b.tag === 'h1') return `<h1>${b.html || esc(b.text)}</h1>`;
-    if (/^h[2-6]$/.test(b.tag)) return `<h2>${b.html || esc(b.text)}</h2>`;
-    return `<p>${b.html || esc(b.text)}</p>`;
+    const cls = b.class ? ` class="${esc(b.class)}"` : '';
+    if (b.tag === 'ul') return `<ul${cls}>${(b.items || []).map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`;
+    if (b.tag === 'h1') return `<h1${cls}>${b.html || esc(b.text)}</h1>`;
+    if (/^h[2-6]$/.test(b.tag)) return `<h2${cls}>${b.html || esc(b.text)}</h2>`;
+    return `<p${cls}>${b.html || esc(b.text)}</p>`;
   }).join('\n      ');
 
   const body = `

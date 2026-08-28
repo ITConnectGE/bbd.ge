@@ -1,36 +1,142 @@
 {
- "_note": "Deliberate content override for the privacy-policy page. data/<lang>.json mirrors the original Wix page (English on ka, half-translated on ru); this file is what actually ships, so re-running tools/extract.js will not undo the translation. Wix's link to its own 'Creating a Privacy Policy' help article is dropped in all three languages.",
+ "_note": "The real privacy policy for bbd.ge, replacing Wix's template text (which explained how to write one rather than being one). Written from what the site actually does: a mailto-based call-request form, embedded Google Maps, a WhatsApp link, no analytics and no cookies of its own. Lives here rather than in data/<lang>.json so tools/extract.js cannot revert it. Update `updated` below whenever the text changes.",
+ "updated": "2026-08-28",
 
  "ka": [
   { "tag": "h1", "text": "პრივატულობის პოლიტიკა" },
-  { "tag": "h2", "text": "სამართლებრივი განაცხადი" },
-  { "tag": "p", "text": "ამ გვერდზე მოცემული განმარტებები და ინფორმაცია მხოლოდ ზოგადი და მიმოხილვითი ხასიათისაა და ეხება იმას, თუ როგორ უნდა შეადგინოთ პრივატულობის პოლიტიკის საკუთარი დოკუმენტი. არ დაეყრდნოთ მას როგორც იურიდიულ რჩევას ან რეკომენდაციას იმის თაობაზე, თუ რა უნდა გააკეთოთ სინამდვილეში, ვინაიდან წინასწარ ვერ ვიცით, კონკრეტულად რა წესების დადგენა გსურთ თქვენს ბიზნესსა და თქვენს კლიენტებსა და ვიზიტორებს შორის. გირჩევთ, მიმართოთ იურიდიულ კონსულტაციას, რომელიც დაგეხმარებათ საკუთარი პრივატულობის პოლიტიკის გააზრებასა და შედგენაში." },
-  { "tag": "h2", "text": "პრივატულობის პოლიტიკა — საფუძვლები" },
-  { "tag": "p", "text": "ამის მიუხედავად, პრივატულობის პოლიტიკა არის განაცხადი, რომელიც ასახავს იმ გზებს — ნაწილობრივ ან სრულად — რომლითაც ვებგვერდი აგროვებს, იყენებს, ავრცელებს, ამუშავებს და მართავს თავისი ვიზიტორებისა და კლიენტების მონაცემებს. როგორც წესი, იგი ასევე მოიცავს განაცხადს ვებგვერდის ვალდებულების შესახებ, დაიცვას ვიზიტორთა და კლიენტთა პრივატულობა, და განმარტებას იმ მექანიზმების თაობაზე, რომლებსაც ვებგვერდი პრივატულობის დასაცავად იყენებს." },
-  { "tag": "p", "text": "სხვადასხვა იურისდიქციაში განსხვავებული სამართლებრივი ვალდებულებები მოქმედებს იმის თაობაზე, თუ რა უნდა შედიოდეს პრივატულობის პოლიტიკაში. თქვენ ხართ პასუხისმგებელი, უზრუნველყოთ თქვენს საქმიანობასა და ადგილმდებარეობაზე მოქმედი კანონმდებლობის დაცვა." },
-  { "tag": "h2", "text": "რა უნდა შედიოდეს პრივატულობის პოლიტიკაში" },
-  { "tag": "p", "text": "ზოგადად, პრივატულობის პოლიტიკა ხშირად მოიცავს შემდეგ საკითხებს: ინფორმაციის ტიპებს, რომელსაც ვებგვერდი აგროვებს, და მათი შეგროვების წესს; განმარტებას, თუ რატომ აგროვებს ვებგვერდი ამგვარ ინფორმაციას; ვებგვერდის მიდგომას მესამე მხარეებისთვის ინფორმაციის გაზიარებასთან დაკავშირებით; გზებს, რომლითაც თქვენს ვიზიტორებსა და კლიენტებს შეუძლიათ ისარგებლონ პრივატულობის შესაბამისი კანონმდებლობით მინიჭებული უფლებებით; არასრულწლოვანთა მონაცემების შეგროვების კონკრეტულ წესებს; და მრავალ სხვას." }
+  { "tag": "p", "class": "legal__meta", "text": "ბოლო განახლება: 28.08.2026" },
+  { "tag": "p", "text": "ეს პოლიტიკა განმარტავს, თუ რა პერსონალურ მონაცემებს ვიღებთ ვებგვერდ bbd.ge-ის მეშვეობით, რისთვის ვიყენებთ მათ და რა უფლებები გაქვთ თქვენ." },
+
+  { "tag": "h2", "text": "ვინ ვართ" },
+  { "tag": "p", "text": "ამ ვებგვერდზე მიღებულ პერსონალურ მონაცემებს ამუშავებს BBD (შემდგომში — „ჩვენ“). ნებისმიერი შეკითხვისთვის დაგვიკავშირდით: info@bbd.ge ან (+995 32) 2 222 312." },
+
+  { "tag": "h2", "text": "რა მონაცემებს ვაგროვებთ" },
+  { "tag": "p", "text": "ვებგვერდი არ ითხოვს რეგისტრაციას და არ ქმნის მომხმარებლის ანგარიშებს. თქვენს მონაცემებს ვიღებთ მხოლოდ მაშინ, როცა თავად გვაწვდით მათ:" },
+  { "tag": "ul", "items": [
+    "როცა ავსებთ ზარის მოთხოვნის ფორმას — თქვენი სახელი, ტელეფონის ნომერი და, სურვილისამებრ, თემა. ფორმა იხსნება თქვენივე ელფოსტის პროგრამაში და წერილი პირდაპირ მისამართზე info@bbd.ge იგზავნება; ვებგვერდი ამ ინფორმაციას არსად ინახავს.",
+    "როცა თავად დაგვიკავშირდებით ელფოსტით, ტელეფონით ან WhatsApp-ით — ის მონაცემები, რომლებსაც მიმოწერისას გვაწვდით."
+  ] },
+  { "tag": "p", "text": "ამის გარდა, ჰოსტინგის პროვაიდერი, როგორც ნებისმიერი ვებგვერდის შემთხვევაში, ტექნიკურ ჟურნალებში ავტომატურად აღრიცხავს IP-მისამართს, ბრაუზერის ტიპსა და მოთხოვნის დროს. ეს საჭიროა ვებგვერდის მუშაობისა და უსაფრთხოებისთვის." },
+  { "tag": "p", "text": "ვებგვერდი არ იყენებს ანალიტიკის ან სარეკლამო სისტემებს და თავად არ ათავსებს ქუქი-ფაილებს." },
+
+  { "tag": "h2", "text": "რისთვის ვიყენებთ მათ" },
+  { "tag": "p", "text": "მიღებულ ინფორმაციას ვიყენებთ მხოლოდ იმისთვის, რომ:" },
+  { "tag": "ul", "items": [
+    "გიპასუხოთ შეკითხვაზე ან დაგიკავშირდეთ თქვენივე მოთხოვნით;",
+    "მოვამზადოთ შეთავაზება და ვაწარმოოთ მოლაპარაკება მომსახურებაზე;",
+    "უზრუნველვყოთ ვებგვერდის გამართული და უსაფრთხო მუშაობა."
+  ] },
+  { "tag": "p", "text": "მონაცემებს არ ვყიდით, არ გადავცემთ მესამე პირებს კომერციული მიზნით და არ ვიყენებთ სარეკლამო დაგზავნისთვის თქვენი თანხმობის გარეშე." },
+
+  { "tag": "h2", "text": "მესამე მხარის სერვისები" },
+  { "tag": "p", "text": "ვებგვერდზე ჩართულია რამდენიმე გარე სერვისი:" },
+  { "tag": "ul", "items": [
+    "Google Maps — პროექტებისა და ოფისის მდებარეობის საჩვენებლად. რუკის ჩატვირთვისას Google იღებს თქვენს IP-მისამართს და ამუშავებს მას საკუთარი წესების შესაბამისად.",
+    "WhatsApp — ღილაკი, რომელიც მიმოწერას იწყებს მხოლოდ მაშინ, როცა თავად დააჭერთ.",
+    "ჰოსტინგის პროვაიდერი — ინახავს ვებგვერდის ფაილებს და აწარმოებს ტექნიკურ ჟურნალებს."
+  ] },
+  { "tag": "p", "text": "ამ სერვისებს საკუთარი პრივატულობის პოლიტიკა აქვთ, რომელზეც ჩვენ გავლენას ვერ ვახდენთ." },
+
+  { "tag": "h2", "text": "რამდენ ხანს ვინახავთ" },
+  { "tag": "p", "text": "თქვენს მიმართვასა და საკონტაქტო მონაცემებს ვინახავთ იმდენ ხანს, რამდენიც საჭიროა შეკითხვაზე პასუხის გასაცემად, ხოლო თანამშრომლობის შემთხვევაში — კანონით დადგენილი ბუღალტრული და სახელშეკრულებო ვალდებულებების შესასრულებლად. ამ ვადის გასვლის შემდეგ მონაცემები იშლება." },
+
+  { "tag": "h2", "text": "თქვენი უფლებები" },
+  { "tag": "p", "text": "საქართველოს კანონმდებლობის შესაბამისად თქვენ გაქვთ უფლება მოითხოვოთ ინფორმაცია იმის შესახებ, თუ რა მონაცემებს ვამუშავებთ თქვენ შესახებ; მოითხოვოთ მათი გასწორება, განახლება ან წაშლა; მოითხოვოთ დამუშავების შეწყვეტა ან შეზღუდვა; და ნებისმიერ დროს გამოიხმოთ ადრე გაცემული თანხმობა." },
+  { "tag": "p", "text": "ამისთვის მოგვწერეთ info@bbd.ge. თუ ჩვენი პასუხით კმაყოფილი არ დარჩებით, უფლება გაქვთ მიმართოთ პერსონალურ მონაცემთა დაცვის სამსახურს (personaldata.ge)." },
+
+  { "tag": "h2", "text": "ცვლილებები" },
+  { "tag": "p", "text": "ამ პოლიტიკის განახლების შემთხვევაში ახალ ვერსიას ამავე გვერდზე გამოვაქვეყნებთ და შესაბამისად შევცვლით განახლების თარიღს." }
  ],
 
  "en": [
   { "tag": "h1", "text": "Privacy Policy" },
-  { "tag": "h2", "text": "Legal Disclaimer" },
-  { "tag": "p", "text": "The explanations and information provided on this page are only general and high-level explanations and information on how to write your own document of a Privacy Policy. You should not rely on this article as legal advice or as recommendations regarding what you should actually do, because we cannot know in advance what are the specific privacy policies you wish to establish between your business and your customers and visitors. We recommend that you seek legal advice to help you understand and to assist you in the creation of your own Privacy Policy." },
-  { "tag": "h2", "text": "Privacy Policy - the basics" },
-  { "tag": "p", "text": "Having said that, a privacy policy is a statement that discloses some or all of the ways a website collects, uses, discloses, processes, and manages the data of its visitors and customers. It usually also includes a statement regarding the website's commitment to protecting its visitors' or customers' privacy, and an explanation about the different mechanisms the website is implementing in order to protect privacy." },
-  { "tag": "p", "text": "Different jurisdictions have different legal obligations of what must be included in a Privacy Policy. You are responsible for making sure you are following the relevant legislation to your activities and location." },
-  { "tag": "h2", "text": "What to include in the Privacy Policy" },
-  { "tag": "p", "text": "Generally speaking, a Privacy Policy often addresses these types of issues: the types of information the website is collecting and the manner in which it collects the data; an explanation about why is the website collecting these types of information; what are the website's practices on sharing the information with third parties; ways in which your visitors and customers can exercise their rights according to the relevant privacy legislation; the specific practices regarding minors' data collection; and much much more." }
+  { "tag": "p", "class": "legal__meta", "text": "Last updated: 28 August 2026" },
+  { "tag": "p", "text": "This policy explains what personal data we receive through bbd.ge, what we use it for, and what rights you have." },
+
+  { "tag": "h2", "text": "Who we are" },
+  { "tag": "p", "text": "Personal data received through this website is processed by BBD (“we”). For any question, contact us at info@bbd.ge or (+995 32) 2 222 312." },
+
+  { "tag": "h2", "text": "What we collect" },
+  { "tag": "p", "text": "The website has no sign-up and creates no user accounts. We only receive your data when you give it to us:" },
+  { "tag": "ul", "items": [
+    "When you fill in the call-request form — your name, phone number and, optionally, a subject. The form opens in your own email program and the message goes straight to info@bbd.ge; the website itself stores nothing.",
+    "When you contact us directly by email, phone or WhatsApp — whatever you tell us in that correspondence."
+  ] },
+  { "tag": "p", "text": "In addition, as with any website, our hosting provider automatically records the IP address, browser type and request time in its technical logs. This is needed to run the site and keep it secure." },
+  { "tag": "p", "text": "The website uses no analytics or advertising services and sets no cookies of its own." },
+
+  { "tag": "h2", "text": "What we use it for" },
+  { "tag": "p", "text": "We use the information we receive only to:" },
+  { "tag": "ul", "items": [
+    "answer your question or call you back at your request;",
+    "prepare a quote and discuss our services with you;",
+    "keep the website working properly and securely."
+  ] },
+  { "tag": "p", "text": "We do not sell your data, do not pass it to third parties for commercial purposes, and do not use it for marketing without your consent." },
+
+  { "tag": "h2", "text": "Third-party services" },
+  { "tag": "p", "text": "A few external services are embedded in the site:" },
+  { "tag": "ul", "items": [
+    "Google Maps — to show project and office locations. When a map loads, Google receives your IP address and processes it under its own terms.",
+    "WhatsApp — a button that only starts a conversation once you click it.",
+    "Our hosting provider — stores the site's files and keeps technical logs."
+  ] },
+  { "tag": "p", "text": "These services have their own privacy policies, which we do not control." },
+
+  { "tag": "h2", "text": "How long we keep it" },
+  { "tag": "p", "text": "We keep your enquiry and contact details for as long as we need them to answer you and, if we go on to work together, to meet our accounting and contractual obligations under the law. After that they are deleted." },
+
+  { "tag": "h2", "text": "Your rights" },
+  { "tag": "p", "text": "Under Georgian law you have the right to ask what data we hold about you; to have it corrected, updated or deleted; to ask us to stop or restrict processing; and to withdraw consent you gave earlier at any time." },
+  { "tag": "p", "text": "To do so, write to info@bbd.ge. If you are not satisfied with our answer, you may contact the Personal Data Protection Service of Georgia (personaldata.ge)." },
+
+  { "tag": "h2", "text": "Changes" },
+  { "tag": "p", "text": "If we update this policy we will publish the new version on this page and change the date above." }
  ],
 
  "ru": [
   { "tag": "h1", "text": "Политика конфиденциальности" },
-  { "tag": "h2", "text": "Юридическое уведомление" },
-  { "tag": "p", "text": "Пояснения и информация, представленные на этой странице, носят общий и обзорный характер и предназначены для понимания того, как можно составить собственный документ Политики конфиденциальности. Не следует рассматривать данный материал как юридическую консультацию или рекомендации к конкретным действиям, поскольку мы не можем заранее знать, какие именно политики конфиденциальности вы планируете установить во взаимоотношениях между вашим бизнесом, клиентами и посетителями. Мы рекомендуем обратиться за юридической консультацией, чтобы лучше разобраться в вопросе и получить помощь при разработке собственной Политики конфиденциальности." },
-  { "tag": "h2", "text": "Политика конфиденциальности — основы" },
-  { "tag": "p", "text": "При этом Политика конфиденциальности — это заявление, раскрывающее часть или все способы, которыми сайт собирает, использует, раскрывает и обрабатывает данные своих посетителей и клиентов, а также управляет ими. Обычно она также включает заявление о том, что сайт обязуется защищать конфиденциальность своих посетителей и клиентов, и описание механизмов, которые сайт применяет для такой защиты." },
-  { "tag": "p", "text": "В разных юрисдикциях действуют разные требования к тому, что должно входить в Политику конфиденциальности. Вы несёте ответственность за соблюдение законодательства, применимого к вашей деятельности и вашему местонахождению." },
-  { "tag": "h2", "text": "Что включить в Политику конфиденциальности" },
-  { "tag": "p", "text": "В целом Политика конфиденциальности обычно затрагивает следующие вопросы: какие типы информации собирает сайт и каким образом осуществляется сбор данных; почему сайт собирает эти данные; каковы практики сайта по передаче информации третьим лицам; каким образом посетители и клиенты могут реализовать свои права в соответствии с действующим законодательством о защите данных; особенности сбора и обработки данных несовершеннолетних и многое другое." }
+  { "tag": "p", "class": "legal__meta", "text": "Последнее обновление: 28.08.2026" },
+  { "tag": "p", "text": "Эта политика объясняет, какие персональные данные мы получаем через сайт bbd.ge, для чего их используем и какие права есть у вас." },
+
+  { "tag": "h2", "text": "Кто мы" },
+  { "tag": "p", "text": "Персональные данные, полученные через этот сайт, обрабатывает BBD («мы»). По любым вопросам пишите на info@bbd.ge или звоните (+995 32) 2 222 312." },
+
+  { "tag": "h2", "text": "Какие данные мы собираем" },
+  { "tag": "p", "text": "Сайт не требует регистрации и не создаёт учётных записей. Мы получаем ваши данные только тогда, когда вы сами их предоставляете:" },
+  { "tag": "ul", "items": [
+    "когда вы заполняете форму заказа звонка — имя, номер телефона и, по желанию, тему. Форма открывается в вашей почтовой программе, и письмо уходит напрямую на info@bbd.ge; сам сайт ничего не сохраняет;",
+    "когда вы связываетесь с нами по электронной почте, телефону или в WhatsApp — те данные, которые вы сообщаете в переписке."
+  ] },
+  { "tag": "p", "text": "Кроме того, как и на любом сайте, хостинг-провайдер автоматически записывает в технические журналы IP-адрес, тип браузера и время запроса. Это необходимо для работы и безопасности сайта." },
+  { "tag": "p", "text": "Сайт не использует аналитические и рекламные системы и не устанавливает собственные файлы cookie." },
+
+  { "tag": "h2", "text": "Для чего мы их используем" },
+  { "tag": "p", "text": "Полученную информацию мы используем только для того, чтобы:" },
+  { "tag": "ul", "items": [
+    "ответить на ваш вопрос или перезвонить вам по вашей просьбе;",
+    "подготовить предложение и обсудить с вами условия работы;",
+    "обеспечить корректную и безопасную работу сайта."
+  ] },
+  { "tag": "p", "text": "Мы не продаём ваши данные, не передаём их третьим лицам в коммерческих целях и не используем для рассылок без вашего согласия." },
+
+  { "tag": "h2", "text": "Сторонние сервисы" },
+  { "tag": "p", "text": "На сайте подключено несколько внешних сервисов:" },
+  { "tag": "ul", "items": [
+    "Google Maps — для показа расположения проектов и офиса. При загрузке карты Google получает ваш IP-адрес и обрабатывает его по собственным правилам.",
+    "WhatsApp — кнопка, которая начинает переписку только после вашего нажатия.",
+    "Хостинг-провайдер — хранит файлы сайта и ведёт технические журналы."
+  ] },
+  { "tag": "p", "text": "У этих сервисов свои политики конфиденциальности, на которые мы не влияем." },
+
+  { "tag": "h2", "text": "Сколько мы храним данные" },
+  { "tag": "p", "text": "Ваше обращение и контактные данные мы храним столько, сколько необходимо, чтобы ответить вам, а в случае сотрудничества — для выполнения бухгалтерских и договорных обязательств, предусмотренных законом. После этого данные удаляются." },
+
+  { "tag": "h2", "text": "Ваши права" },
+  { "tag": "p", "text": "В соответствии с законодательством Грузии вы вправе запросить информацию о том, какие ваши данные мы обрабатываем; потребовать их исправления, обновления или удаления; потребовать прекращения или ограничения обработки; а также в любой момент отозвать ранее данное согласие." },
+  { "tag": "p", "text": "Для этого напишите на info@bbd.ge. Если наш ответ вас не удовлетворит, вы вправе обратиться в Службу защиты персональных данных Грузии (personaldata.ge)." },
+
+  { "tag": "h2", "text": "Изменения" },
+  { "tag": "p", "text": "При обновлении этой политики мы опубликуем новую версию на этой же странице и изменим дату выше." }
  ]
 }
