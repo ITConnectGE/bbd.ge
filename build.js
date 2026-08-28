@@ -38,8 +38,12 @@ const MAP_TILES_KEY = (process.env.MAP_TILES_KEY || '').trim();
 const statusKeys = Object.keys(STATUS);
 const ONGOING = new Set(STATUS[statusKeys[2]] || []);
 
+/* The domain GitHub Pages serves the site on. Written to docs/CNAME on every
+   build — GitHub drops the setting otherwise when a deploy replaces the site. */
+const CUSTOM_DOMAIN = process.env.CUSTOM_DOMAIN === '' ? '' : (process.env.CUSTOM_DOMAIN || 'bbd.ge');
+
 // Canonical / og:image / sitemap host. Override with SITE_URL when previewing elsewhere.
-const SITE_URL = (process.env.SITE_URL || 'https://www.bbd.ge').replace(/\/$/, '');
+const SITE_URL = (process.env.SITE_URL || 'https://bbd.ge').replace(/\/$/, '');
 
 /* The company-profile PDFs ship with the site. tools/shrink-pdfs.js re-encodes
    the originals (23 MB each) down to ~9.5 MB so the Pages artifact stays well
@@ -836,6 +840,8 @@ function build() {
 
   fs.writeFileSync(path.join(OUT, '404.html'), page404());
   fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
+  // the custom domain, rewritten on every build so a deploy never drops it
+  if (CUSTOM_DOMAIN) fs.writeFileSync(path.join(OUT, 'CNAME'), CUSTOM_DOMAIN + '\n');
   fs.writeFileSync(path.join(OUT, 'sitemap.xml'), sitemap());
   fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 

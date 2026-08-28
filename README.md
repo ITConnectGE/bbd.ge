@@ -3,7 +3,7 @@
 A hand-written static rebuild of **bbd.ge** (originally a Wix Studio site), in
 Georgian, English and Russian, deployed to GitHub Pages.
 
-**Live:** https://itconnectge.github.io/bbd.ge/
+**Live:** https://bbd.ge
 
 * 6 static pages × 3 languages
 * 60 project detail pages × 3 languages
@@ -103,9 +103,14 @@ that is what the original shows too. They get no marker.
 `.github/workflows/deploy.yml` builds on every push to `main` and publishes
 `docs/` to GitHub Pages. Nothing else is needed — no build output is committed.
 
-To point the site at a custom domain, add `docs/CNAME` (write it from
-`build.js` so it survives rebuilds) and set the domain in the repository's
-Pages settings.
+The site is served on **bbd.ge**. `build.js` writes `docs/CNAME` on every build
+(GitHub otherwise drops the setting when a deploy replaces the site), and the
+domain is set in the repository's Pages settings. DNS lives in Cloudflare: the
+apex has GitHub's four A records, `www` is a CNAME to `itconnectge.github.io`,
+and the Outlook MX/SPF records are untouched.
+
+`CUSTOM_DOMAIN` and `SITE_URL` override the domain if it ever changes; set
+`CUSTOM_DOMAIN=` (empty) to drop the CNAME file altogether.
 
 ## Editing content
 
