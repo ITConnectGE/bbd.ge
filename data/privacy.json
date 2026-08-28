@@ -1,5 +1,5 @@
 {
- "_note": "The real privacy policy for bbd.ge, replacing Wix's template text (which explained how to write one rather than being one). Written from what the site actually does: a mailto-based call-request form, embedded Google Maps, a WhatsApp link, no analytics and no cookies of its own. Lives here rather than in data/<lang>.json so tools/extract.js cannot revert it. Update `updated` below whenever the text changes.",
+ "_note": "The real privacy policy for bbd.ge, replacing Wix's template text (which explained how to write one rather than being one). Written from what the site actually does: a mailto-based call-request form, embedded Google Maps, a WhatsApp link, no analytics and no cookies of its own. Lives here rather than in data/<lang>.json so tools/extract.js cannot revert it. Reviewed and approved by BBD's lawyer on 2026-08-28. Update `updated` below whenever the text changes.",
  "updated": "2026-08-28",
 
  "ka": [

@@ -129,9 +129,9 @@ all three languages, written from what this site actually does: a `mailto:`
 call-request form, embedded Google Maps, a WhatsApp link, no analytics and no
 cookies of its own.
 
-It names the controller as შპს „ბალტიის ბიზნეს განვითარება“ (ID 400098078).
-It still wants a lawyer's review. Update `updated` in that file whenever the
-text changes — it is rendered as the "last updated" line.
+It names the controller as შპს „ბალტიის ბიზნეს განვითარება“ (ID 400098078) and
+was approved by BBD's lawyer on 2026-08-28. Update `updated` in that file
+whenever the text changes — it is rendered as the "last updated" line.
 
 ## Known carry-overs from the original site
 
