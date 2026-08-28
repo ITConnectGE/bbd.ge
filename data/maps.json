@@ -1,0 +1,307 @@
+{
+ "contact": {
+  "lat": 41.7229251,
+  "lng": 44.7709661,
+  "zoom": 16
+ },
+ "projects/matiani-by-biograpi-": {
+  "lat": 41.7293282,
+  "lng": 44.7871251,
+  "zoom": 14
+ },
+ "projects/shantani-by-biograpi-": {
+  "lat": 41.7232317,
+  "lng": 44.7871235,
+  "zoom": 14
+ },
+ "projects/dariali-tunnel": {
+  "lat": 0,
+  "lng": 0,
+  "zoom": 14
+ },
+ "projects/hisani-towers": {
+  "lat": 41.685061,
+  "lng": 44.8373041,
+  "zoom": 14
+ },
+ "projects/sakeni": {
+  "lat": 41.7275177,
+  "lng": 44.7605012,
+  "zoom": 14
+ },
+ "projects/mozaika": {
+  "lat": 41.7333537,
+  "lng": 44.7449,
+  "zoom": 14
+ },
+ "projects/tunnel-rikoti": {
+  "lat": 42.1102552,
+  "lng": 43.3620755,
+  "zoom": 14
+ },
+ "projects/tunnel-rikoti-": {
+  "lat": 42.1073261,
+  "lng": 43.3620755,
+  "zoom": 14
+ },
+ "projects/monday-hotel": {
+  "lat": 41.7119679,
+  "lng": 44.7924345,
+  "zoom": 14
+ },
+ "projects/smart-soft-office": {
+  "lat": 41.6938026,
+  "lng": 44.8015168,
+  "zoom": 14
+ },
+ "projects/ibis-ortachala": {
+  "lat": 41.6829481,
+  "lng": 44.8267995,
+  "zoom": 14
+ },
+ "projects/tbilisi-hills-gold-%26-residence": {
+  "lat": 41.6583193,
+  "lng": 44.8340649,
+  "zoom": 14
+ },
+ "projects/archi-gldani-office": {
+  "lat": 41.7934793,
+  "lng": 44.8097157,
+  "zoom": 14
+ },
+ "projects/archi-dighomi-cd-blocks": {
+  "lat": 41.7970493,
+  "lng": 44.7644621,
+  "zoom": 14
+ },
+ "projects/dinamo-business-center": {
+  "lat": 41.7231064,
+  "lng": 44.7897418,
+  "zoom": 14
+ },
+ "projects/radisson-red-hotel": {
+  "lat": 41.7052071,
+  "lng": 44.800383,
+  "zoom": 14
+ },
+ "projects/archi-isani-sales-office": {
+  "lat": 41.6819469,
+  "lng": 44.8399529,
+  "zoom": 14
+ },
+ "projects/batumi-terminal": {
+  "lat": 41.6911733,
+  "lng": 44.7728037,
+  "zoom": 14
+ },
+ "projects/archi-gldani-": {
+  "lat": 41.7905356,
+  "lng": 44.8097157,
+  "zoom": 14
+ },
+ "projects/archi-central-park-": {
+  "lat": 41.7210249,
+  "lng": 44.7465592,
+  "zoom": 14
+ },
+ "projects/archi-isani-e-block": {
+  "lat": 41.6851872,
+  "lng": 44.8419514,
+  "zoom": 14
+ },
+ "projects/restaurant-in-tserovani": {
+  "lat": 41.9030639,
+  "lng": 44.669537,
+  "zoom": 14
+ },
+ "projects/hotel-on-akhundov-street": {
+  "lat": 41.6912368,
+  "lng": 44.8128674,
+  "zoom": 14
+ },
+ "projects/tunnel-batumi-": {
+  "lat": 41.6355516,
+  "lng": 41.6795882,
+  "zoom": 14
+ },
+ "projects/iliyard": {
+  "lat": 41.714742,
+  "lng": 44.7555256,
+  "zoom": 14
+ },
+ "projects/archi-varketili-2": {
+  "lat": 41.6966278,
+  "lng": 44.8796211,
+  "zoom": 14
+ },
+ "projects/archi-saburtalo-b-block": {
+  "lat": 41.7241552,
+  "lng": 44.707314,
+  "zoom": 14
+ },
+ "projects/vazha-pshavela-apartment-%2320": {
+  "lat": 41.7275833,
+  "lng": 44.7299951,
+  "zoom": 14
+ },
+ "projects/archi-wood": {
+  "lat": 41.7789169,
+  "lng": 44.777586,
+  "zoom": 14
+ },
+ "projects/republic-24-restaurant": {
+  "lat": 41.7066151,
+  "lng": 44.7916982,
+  "zoom": 14
+ },
+ "projects/kutaisi-airport-terminal-2": {
+  "lat": 42.1820109,
+  "lng": 42.4655269,
+  "zoom": 14
+ },
+ "projects/tunnel-mestia": {
+  "lat": 43.0359519,
+  "lng": 42.6883624,
+  "zoom": 14
+ },
+ "projects/tunnel-abastumani": {
+  "lat": 41.7534935,
+  "lng": 42.833443,
+  "zoom": 14
+ },
+ "projects/medical-center-reproart": {
+  "lat": 41.7254611,
+  "lng": 44.7679492,
+  "zoom": 14
+ },
+ "projects/sun-petroleum-georgia-stores": {
+  "lat": 0,
+  "lng": 0,
+  "zoom": 14
+ },
+ "projects/casino-alliance-batumi": {
+  "lat": 41.6540733,
+  "lng": 41.6369994,
+  "zoom": 14
+ },
+ "projects/biltmore-hotel-meeting-room": {
+  "lat": 41.702223,
+  "lng": 44.7943976,
+  "zoom": 14
+ },
+ "projects/casino-jewel-tbilisi": {
+  "lat": 41.7051707,
+  "lng": 44.7943976,
+  "zoom": 14
+ },
+ "projects/biltmore-hotel": {
+  "lat": 41.7051707,
+  "lng": 44.7943976,
+  "zoom": 14
+ },
+ "projects/airplane-technics": {
+  "lat": 41.6724883,
+  "lng": 44.9646437,
+  "zoom": 14
+ },
+ "projects/east-point": {
+  "lat": 41.6926998,
+  "lng": 44.8990145,
+  "zoom": 14
+ },
+ "projects/shekvetili-concert-hall": {
+  "lat": 41.9414749,
+  "lng": 41.7747888,
+  "zoom": 14
+ },
+ "projects/green-cape-botanico": {
+  "lat": 41.6899039,
+  "lng": 41.7050048,
+  "zoom": 14
+ },
+ "projects/archi-tamarashvili-offices": {
+  "lat": 41.7237155,
+  "lng": 44.7465592,
+  "zoom": 14
+ },
+ "projects/lisi-hills-residence": {
+  "lat": 41.7518594,
+  "lng": 44.7611143,
+  "zoom": 14
+ },
+ "projects/tbilisi-sea-mall": {
+  "lat": 41.7355412,
+  "lng": 44.8409932,
+  "zoom": 14
+ },
+ "projects/stepantsminda-gveleti": {
+  "lat": 0,
+  "lng": 0,
+  "zoom": 14
+ },
+ "projects/pasanauri-khando": {
+  "lat": 0,
+  "lng": 0,
+  "zoom": 14
+ },
+ "projects/carefour": {
+  "lat": 0,
+  "lng": 0,
+  "zoom": 14
+ },
+ "projects/krtsanisi-resort-residence": {
+  "lat": 0,
+  "lng": 0,
+  "zoom": 14
+ },
+ "projects/tegeta-motors-trailer-service-center": {
+  "lat": 0,
+  "lng": 0,
+  "zoom": 14
+ },
+ "projects/krtsanisi-residential-building": {
+  "lat": 0,
+  "lng": 0,
+  "zoom": 14
+ },
+ "projects/archi-at-kikvidze-garden": {
+  "lat": 0,
+  "lng": 0,
+  "zoom": 14
+ },
+ "projects/holliday-inn-express": {
+  "lat": 0,
+  "lng": 0,
+  "zoom": 14
+ },
+ "projects/super-8-by-wyndham-2020": {
+  "lat": 0,
+  "lng": 0,
+  "zoom": 14
+ },
+ "projects/tskneti-residence-2018": {
+  "lat": 0,
+  "lng": 0,
+  "zoom": 14
+ },
+ "projects/luxury-apartment-opera-2013": {
+  "lat": 0,
+  "lng": 0,
+  "zoom": 14
+ },
+ "projects/spring-%236-": {
+  "lat": 0,
+  "lng": 0,
+  "zoom": 14
+ },
+ "projects/tbilisi-mall": {
+  "lat": 0,
+  "lng": 0,
+  "zoom": 14
+ },
+ "projects/darialy-hydro-power-plant": {
+  "lat": 0,
+  "lng": 0,
+  "zoom": 14
+ }
+}

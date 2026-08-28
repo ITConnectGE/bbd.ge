@@ -23,3 +23,4 @@ fix-links.js
 server.js
 .claude/
 tools/geom_*.txt
+src/assets/files/compressed/

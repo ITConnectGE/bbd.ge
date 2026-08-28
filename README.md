@@ -22,7 +22,7 @@ src/
   js/main.js          mobile nav, carousel, project filters, contact form
   assets/img          photos, icons, flags (downloaded from Wix, max 2000px)
   assets/fonts        FiraGO Book + Medium (SIL OFL), self-hosted
-  assets/files        company-profile PDFs (ka / en / ru) — see note below
+  assets/files        company-profile PDFs, web-ready (ka / en / ru) — see below
 tools/                one-off tooling used to mirror and verify the original
 docs/                 build output — published by GitHub Pages (git-ignored)
 ```
@@ -39,24 +39,39 @@ node tools/cmp.js    https://www.bbd.ge/ http://localhost:4321/   # element-by-e
 ```
 
 `build.js` has no dependencies. The tooling under `tools/` needs
-`npm install` (puppeteer + cheerio) and is only required when re-mirroring the
-original site.
+`npm install` (puppeteer, cheerio, sharp, pdf-lib) and is only required when
+re-mirroring the original site.
 
 ## The company-profile PDFs
 
-The three PDFs are ~23 MB each. Bundling them pushes the Pages artifact past
-what `actions/deploy-pages` can publish inside its hard 10-minute limit (the
-`timeout` input is capped at 600000 ms), so they are published as assets on the
-`assets` release and linked from there. The site artifact is ~33 MB.
+The originals are ~23 MB each — 68 MB for the three. That is most of a Pages
+artifact, and `actions/deploy-pages` caps its `timeout` at 10 minutes, which a
+~100 MB artifact does not reliably publish within.
 
-`src/assets/files` is still the source of truth. After changing a PDF:
+So `src/assets/files/` holds web-ready copies (~9.5 MB each) produced by
+`tools/shrink-pdfs.js`, which re-encodes the embedded JPEGs at max 1600px wide,
+quality 72. Text and vectors are untouched, page count and page size are
+unchanged, and the pages are indistinguishable at 100% zoom. The finished
+artifact is ~61 MB.
+
+The untouched originals are attached to the `assets` release. To regenerate:
 
 ```bash
-gh release upload assets src/assets/files/BBD-company-profile-ka.pdf --clobber
+gh release download assets -D /tmp/pdf-originals
+node tools/shrink-pdfs.js /tmp/pdf-originals src/assets/files
+node tools/shrink-pdfs.js /tmp/pdf-originals src/assets/files 1300 66   # smaller
 ```
 
-Set `PDF_BASE=assets/files` before `node build.js` to bundle them into the site
-instead — worth doing if they are ever compressed down to a few MB each.
+Set `PDF_BASE` to a URL (e.g. that release) to link out instead of bundling.
+
+## The Google Maps
+
+Wix never puts the map location in the HTML — it hands it to the map iframe at
+runtime. `tools/fetch-maps.js` reads the centre and zoom back off the live
+`google.maps.Map` instance on all 61 pages that have a map and writes
+`data/maps.json`; the build then renders Google's keyless embed at those exact
+coordinates. 16 of the 60 projects have no location set in the Wix CMS and sit
+at 0,0 — that is what the original shows too.
 
 ## Deploy
 
@@ -75,7 +90,8 @@ The JSON is regenerated from the live Wix site by:
 ```bash
 node tools/fetch-pages.js    # mirror every page into cache/
 node tools/extract.js        # cache/ -> data/*.json
-node tools/fetch-assets.js   # download every referenced image + the PDFs
+node tools/fetch-assets.js   # download every referenced image (skips files already present)
+node tools/fetch-maps.js     # read every map's centre/zoom off the live site
 ```
 
 ## Known carry-overs from the original site

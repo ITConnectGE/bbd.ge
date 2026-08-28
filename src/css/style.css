@@ -187,6 +187,19 @@ button { font: inherit; }
 .hero__text { font-size: 17px; line-height: 1.6; color: var(--body); text-align: justify; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 25px; margin-top: 32px; }
 
+/* Four stacked copies of the same wave, each 20px taller and fainter than the
+   one in front of it, matching the original's layered bottom divider. */
+.divider { position: absolute; left: 0; right: 0; bottom: 0; height: 160px; z-index: 1; pointer-events: none; }
+.divider span {
+  position: absolute; left: 0; bottom: 0; width: 100%;
+  height: calc(100px + var(--i) * 20px);
+  opacity: calc(1 / (1 + var(--i)));
+  background-image: url("data:image/svg+xml,%3Csvg preserveAspectRatio='none' viewBox='0 125.7 1920 174.3' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffffff' d='M1920 287.7c-480 0-480-162-960-162s-480 162-960 162V300h1920v-12.3z'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-position: calc(50% + 960px) 100%;
+  background-repeat: repeat-x;
+}
+
 /* ---------------------------------------------------------------- features */
 .features__inner { padding: 28px var(--pad-x) 34px; max-width: var(--maxw); margin: 0 auto; }
 .features__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 47px; }
@@ -362,8 +375,12 @@ button { font: inherit; }
 .project-card:hover .project-card__img img { transform: scale(1.05); }
 .project-card__title { font-size: 18px; line-height: 22px; margin: 16px 0 8px; }
 .project-card__desc { font-size: 15px; line-height: 20px; color: var(--body); }
-.project-card__more { display: inline-block; margin-top: 16px; font-family: var(--font-head); font-size: 16px; color: var(--blue-600); text-decoration: underline; }
-.project-card:hover .project-card__more { color: var(--blue-700); }
+.project-card__more {
+  display: inline-block; margin-top: 16px;
+  font-family: var(--font-head); font-size: 16px; color: var(--blue-600);
+  text-decoration: underline; transition: color .4s ease;
+}
+.project-card:hover .project-card__more { color: var(--ink); }
 .projects-empty { grid-column: 1 / -1; padding: 24px 0; color: var(--body); }
 
 /* ---------------------------------------------------------------- project detail */
@@ -382,6 +399,7 @@ button { font: inherit; }
 .project__field { font-size: 16px; line-height: 22px; }
 .project__field b { font-family: var(--font-head); font-weight: 400; color: var(--ink); }
 .project__field span { color: var(--ink); }
+.project__map { border: 0; width: 100%; height: 280px; margin-top: 32px; background: #e6e6e3; }
 
 /* ---------------------------------------------------------------- contact */
 .contact__inner { padding: 120px var(--pad-x) 96px; max-width: var(--maxw); margin: 0 auto; }
@@ -404,6 +422,7 @@ button { font: inherit; }
 .field input:focus, .field textarea:focus { outline: 2px solid var(--blue-500); outline-offset: -1px; }
 .contact__submit { width: 100%; max-width: 455px; height: 41px; font-size: 16px; }
 .contact__map { border: 0; width: 100%; height: 585px; background: #e6e6e3; }
+.contact__map, .project__map { color-scheme: light; }
 
 /* ---------------------------------------------------------------- legal page */
 .legal__inner { padding: 150px var(--pad-x) 96px; max-width: 960px; margin: 0 auto; }
@@ -537,6 +556,9 @@ button { font: inherit; }
   .section__inner { padding: 64px var(--pad-x); }
   .hero { height: auto; min-height: 0; padding: 110px 0 70px; }
   .hero__bg img { object-position: 70% 50%; }
+  .divider { height: 80px; }
+  .divider span { height: calc(50px + var(--i) * 10px); }
+  .project__map { height: 220px; }
   .hero__actions { gap: 14px; }
   .hero__actions .btn { flex: 1 1 auto; padding: 0 18px; font-size: 16px; }
   .svc__grid { grid-template-columns: 1fr; }

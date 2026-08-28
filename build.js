@@ -21,6 +21,9 @@ const D = {};
 LANGS.forEach((l) => { D[l] = JSON.parse(fs.readFileSync(path.join(DATA, l + '.json'), 'utf8')); });
 const STATUS = JSON.parse(fs.readFileSync(path.join(DATA, 'status.json'), 'utf8'));
 const slugs = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools', 'slugs.json'), 'utf8'));
+// centre/zoom of every Google Map on the site, read off the live map instances
+// by tools/fetch-maps.js (Wix never puts the location in the HTML)
+const MAPS = JSON.parse(fs.readFileSync(path.join(DATA, 'maps.json'), 'utf8'));
 
 // status.json keys are the Georgian labels in DOM order: All / done / ongoing
 const statusKeys = Object.keys(STATUS);
@@ -28,16 +31,16 @@ const ONGOING = new Set(STATUS[statusKeys[2]] || []);
 
 // Canonical / og:image / sitemap host. Override with SITE_URL when previewing elsewhere.
 const SITE_URL = (process.env.SITE_URL || 'https://www.bbd.ge').replace(/\/$/, '');
-const MAP_QUERY = 'David Gamrekeli St 2, Tbilisi, Georgia';
 
-/* The three company-profile PDFs are ~23 MB each. Bundling them would push the
-   Pages artifact past what deploy-pages can publish inside its hard 10-minute
-   limit, so they live as release assets instead. Point PDF_BASE at a local
-   path (e.g. "assets/files") to bundle them again. */
-const PDF_BASE = process.env.PDF_BASE || 'https://github.com/ITConnectGE/bbd.ge/releases/download/assets';
+/* The company-profile PDFs ship with the site. tools/shrink-pdfs.js re-encodes
+   the originals (23 MB each) down to ~9.5 MB so the Pages artifact stays well
+   inside what deploy-pages can publish; the untouched originals stay on the
+   `assets` release. Set PDF_BASE to a URL to link out instead of bundling. */
+const PDF_BASE = process.env.PDF_BASE || 'assets/files';
 const isLocalPdfBase = !/^https?:/.test(PDF_BASE);
 const pdfHref = (lang, rel) =>
-  (isLocalPdfBase ? rel + PDF_BASE.replace(/^/|/$/g, '') + '/' : PDF_BASE + '/') + 'BBD-company-profile-' + lang + '.pdf';
+  (isLocalPdfBase ? rel + PDF_BASE.replace(/^\/|\/$/g, '') + '/' : PDF_BASE + '/')
+  + 'BBD-company-profile-' + lang + '.pdf';
 
 /* ---------------------------------------------------------------- helpers */
 const esc = (s) => String(s == null ? '' : s)
@@ -126,6 +129,25 @@ function shape(o) {
   }
   return `<span class="${cls.join(' ')}" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;background:${o.c}${vars}"></span>`;
 }
+
+/* Google's keyless embed. It only accepts a query, so we hand it the exact
+   coordinates and zoom the original map reports. */
+function mapEmbed(key, lang, cls, title) {
+  const m = MAPS[key];
+  if (!m) return '';
+  const q = m.lat + ',' + m.lng;
+  // Wix labels its maps in English on the Georgian pages too — only /ru differs
+  const hl = lang === 'ru' ? 'ru' : 'en';
+  const src = 'https://www.google.com/maps?q=' + encodeURIComponent(q)
+    + '&z=' + m.zoom + '&hl=' + hl + '&output=embed';
+  return `<iframe class="${cls}" title="${esc(title)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${src}"></iframe>`;
+}
+
+/* The hero's bottom edge is a four-layer wave, each layer 20px taller and
+   fainter than the one in front. Geometry and the wave path come from the
+   original's own divider. */
+const HERO_DIVIDER = `<div class="divider" aria-hidden="true">${[3, 2, 1, 0]
+  .map((i) => `<span style="--i:${i}"></span>`).join('')}</div>`;
 
 /* ---------------------------------------------------------------- chrome */
 function head(lang, depth, opts) {
@@ -341,6 +363,7 @@ function pageHome(lang) {
         <div class="hero__actions">${heroBtns}</div>
       </div>
     </div>
+    ${HERO_DIVIDER}
   </section>
 
   <section class="section features">
@@ -590,6 +613,7 @@ function pageProject(lang, slug) {
         <div class="project__rule"></div>
         <p class="project__desc">${esc(p.desc)}</p>
         <div class="project__fields">${fields}</div>
+        ${mapEmbed('projects/' + slug, lang, 'project__map', p.title)}
       </div>
     </div>
   </div>
@@ -646,8 +670,7 @@ function pageContact(lang) {
         </form>
       </div>
       <div>
-        <iframe class="contact__map" title="Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&z=15&output=embed"></iframe>
+        ${mapEmbed('contact', lang, 'contact__map', d.contact.title)}
       </div>
     </div>
   </div>
@@ -775,6 +798,7 @@ function build() {
   }
 
   copyDir(path.join(SRC, 'assets'), path.join(OUT, 'assets'));
+  // when the PDFs are linked out, keep them out of the artifact entirely
   if (!isLocalPdfBase) fs.rmSync(path.join(OUT, 'assets', 'files'), { recursive: true, force: true });
   copyDir(path.join(SRC, 'css'), path.join(OUT, 'assets', 'css'));
   copyDir(path.join(SRC, 'js'), path.join(OUT, 'assets', 'js'));
