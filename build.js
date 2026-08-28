@@ -27,10 +27,12 @@ const MAPS = JSON.parse(fs.readFileSync(path.join(DATA, 'maps.json'), 'utf8'));
 // translated privacy-policy copy, overriding what the extractor mirrors
 const PRIVACY = JSON.parse(fs.readFileSync(path.join(DATA, 'privacy.json'), 'utf8'));
 
-/* Set GOOGLE_MAPS_KEY to render the maps through the Maps JS API, which is the
-   only way to reproduce the original's styling, marker and info window. Left
-   empty, the build emits Google's keyless embed instead — see mapEmbed(). */
-const GOOGLE_MAPS_KEY = (process.env.GOOGLE_MAPS_KEY || '').trim();
+/* Which tile style the Leaflet maps use. `osm` is the default because it is
+   the only one that needs no account at all — CARTO's basemaps now watermark
+   unkeyed requests. Set MAP_TILES=carto (or =voyager) once a free CARTO key
+   exists and pass it as MAP_TILES_KEY. */
+const MAP_TILES = process.env.MAP_TILES || 'osm';
+const MAP_TILES_KEY = (process.env.MAP_TILES_KEY || '').trim();
 
 // status.json keys are the Georgian labels in DOM order: All / done / ongoing
 const statusKeys = Object.keys(STATUS);
@@ -137,43 +139,30 @@ function shape(o) {
   return `<span class="${cls.join(' ')}" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;background:${o.c}${vars}"></span>`;
 }
 
-/* Two ways to draw a map.
-
-   With a Google Maps JS API key (GOOGLE_MAPS_KEY), we reproduce the original
-   exactly: same centre and zoom, Wix's own style array, the marker, and its
-   info window with the title and a Directions link.
-
-   Without one, we fall back to Google's keyless embed — right place, right
-   zoom, but Google's default styling and no info window. That keeps the site
-   working before a key exists; drop the key in and every map upgrades. */
+/* A map element, drawn by Leaflet at runtime from data-map using free
+   OpenStreetMap-based tiles — no API key, no account, no billing. The original
+   used the Google Maps JS API under Wix's own enterprise licence, which cannot
+   be reused; centre, zoom, marker and Directions link all match, while the tile
+   artwork is OSM's rather than Google's. */
 function mapEmbed(key, lang, cls, title) {
   const m = MAPS[key];
   if (!m) return '';
-  // Wix labels its maps in English on the Georgian pages too — only /ru differs
-  const hl = lang === 'ru' ? 'ru' : 'en';
-
-  if (GOOGLE_MAPS_KEY) {
-    const cfg = { lat: m.lat, lng: m.lng, zoom: m.zoom };
-    if (m.title) cfg.title = m.title;
-    if (m.directions) cfg.directions = m.directions;
+  const cfg = { lat: m.lat, lng: m.lng, zoom: m.zoom };
+  if (m.title) cfg.title = m.title;
+  if (m.directions) {
+    cfg.directions = m.directions;
     cfg.dirLabel = { ka: 'მარშრუტი', en: 'Directions', ru: 'Маршрут' }[lang];
-    return `<div class="${cls} gmap" role="img" aria-label="${esc(title)}" data-gmap='${esc(JSON.stringify(cfg))}'></div>`;
   }
-
-  const src = 'https://www.google.com/maps?q=' + encodeURIComponent(m.lat + ',' + m.lng)
-    + '&z=' + m.zoom + '&hl=' + hl + '&output=embed';
-  return `<iframe class="${cls}" title="${esc(title)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${src}"></iframe>`;
+  const keyAttr = MAP_TILES_KEY ? ` data-tiles-key="${esc(MAP_TILES_KEY)}"` : '';
+  return `<div class="${cls} lmap" role="img" aria-label="${esc(title)}" data-tiles="${esc(MAP_TILES)}"${keyAttr} data-map='${esc(JSON.stringify(cfg))}'></div>`;
 }
 
-/* The Maps JS API loader plus the shared style array, emitted once per page
-   that actually has a map. */
+/* Leaflet plus the renderer, emitted only on pages that actually have a map. */
 function mapScript(lang, depth) {
-  if (!GOOGLE_MAPS_KEY) return '';
-  const hl = lang === 'ru' ? 'ru' : 'en';
+  const rel = relFor(depth);
   return `
-<script>window.BBD_MAP_STYLE=${JSON.stringify(MAPS._style || [])};</script>
-<script src="${relFor(depth)}assets/js/maps.js" defer></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(GOOGLE_MAPS_KEY)}&language=${hl}&loading=async&callback=bbdInitMaps" defer></script>`;
+<script src="${rel}assets/vendor/leaflet/leaflet.js" defer></script>
+<script src="${rel}assets/js/maps.js" defer></script>`;
 }
 
 /* The hero's bottom edge is a four-layer wave, each layer 20px taller and
@@ -204,7 +193,8 @@ function head(lang, depth, opts) {
   <link rel="icon" href="${rel}assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="${rel}assets/fonts/firago-book.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="${rel}assets/fonts/firago-medium.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="${rel}assets/css/style.css">
+  <link rel="stylesheet" href="${rel}assets/css/style.css">${opts.map ? `
+  <link rel="stylesheet" href="${rel}assets/vendor/leaflet/leaflet.css">` : ''}
   <script>document.documentElement.className += ' js';</script>
 </head>
 <body>`;
@@ -658,6 +648,7 @@ function pageProject(lang, slug) {
     title: `${p.title} | BBD`,
     description: p.desc,
     ogImage: p.gallery[0] || (li && li.image && li.image.uri),
+    map: true,
   }) + header(lang, depth, 'projects') + body + footer(lang, depth, 'projects', mapScript(lang, depth));
 }
 
@@ -713,6 +704,7 @@ function pageContact(lang) {
     key: 'contact',
     title: `${d.contact.title} | BBD`,
     description: (b[2] || [''])[0].replace(/\n/g, ' '),
+    map: true,
   }) + header(lang, depth, 'contact') + body + footer(lang, depth, 'contact', mapScript(lang, depth));
 }
 

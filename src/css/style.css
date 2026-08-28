@@ -597,11 +597,18 @@ button { font: inherit; }
 .svc-row__inner > .shape { z-index: 0; }
 .svc-row__text, .svc-row__media { position: relative; z-index: 1; }
 
-/* Maps rendered through the JS API (a keyless embed uses the same boxes) */
-.gmap { background: #e7fff4; }
-.gmap__info { font-family: var(--font-body); font-size: 14px; line-height: 1.5; color: var(--ink); }
-.gmap__info p { margin: 0 0 4px; }
-.gmap__info a { color: var(--blue-600); text-decoration: underline; }
+/* Leaflet maps. Leaflet's own stylesheet handles the panes and controls; this
+   only sets the surround and the popup type so it matches the rest of the site. */
+.lmap { background: #e8e8e8; z-index: 0; }
+/* OSM's raster tiles are more saturated than the original's Google styling;
+   muting them lands much closer to it. Only the tile pane is affected — the
+   marker and popup live in their own panes. */
+.lmap .leaflet-tile-pane { filter: saturate(.5) brightness(1.08); }
+.lmap .leaflet-popup-content { font-family: var(--font-body); font-size: 14px; line-height: 1.5; color: var(--ink); margin: 12px 16px; }
+.lmap .leaflet-popup-content b { font-family: var(--font-head); font-weight: 400; }
+.lmap .leaflet-popup-content a { color: var(--blue-600); text-decoration: underline; }
+.lmap .leaflet-container { font-family: var(--font-body); }
+.lmap .leaflet-control-attribution { font-size: 10px; }
 
 /* privacy policy and other long-form legal copy */
 .legal__meta { font-size: 14px; color: var(--body-2); margin-bottom: 24px; }

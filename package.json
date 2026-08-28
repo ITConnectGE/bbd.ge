@@ -12,6 +12,7 @@
   "type": "commonjs",
   "dependencies": {
     "cheerio": "^1.2.0",
+    "leaflet": "^1.9.4",
     "pdf-lib": "^1.17.1",
     "puppeteer": "^24.40.0",
     "sharp": "^0.35.4"

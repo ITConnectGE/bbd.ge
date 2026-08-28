@@ -8,7 +8,7 @@
   { "tag": "p", "text": "ეს პოლიტიკა განმარტავს, თუ რა პერსონალურ მონაცემებს ვიღებთ ვებგვერდ bbd.ge-ის მეშვეობით, რისთვის ვიყენებთ მათ და რა უფლებები გაქვთ თქვენ." },
 
   { "tag": "h2", "text": "ვინ ვართ" },
-  { "tag": "p", "text": "ამ ვებგვერდზე მიღებულ პერსონალურ მონაცემებს ამუშავებს BBD (შემდგომში — „ჩვენ“). ნებისმიერი შეკითხვისთვის დაგვიკავშირდით: info@bbd.ge ან (+995 32) 2 222 312." },
+  { "tag": "p", "text": "ამ ვებგვერდზე მიღებულ პერსონალურ მონაცემებს ამუშავებს შპს „ბალტიის ბიზნეს განვითარება“ (ს/კ 400098078; შემდგომში — „BBD“ ან „ჩვენ“). ნებისმიერი შეკითხვისთვის დაგვიკავშირდით: info@bbd.ge ან (+995 32) 2 222 312." },
 
   { "tag": "h2", "text": "რა მონაცემებს ვაგროვებთ" },
   { "tag": "p", "text": "ვებგვერდი არ ითხოვს რეგისტრაციას და არ ქმნის მომხმარებლის ანგარიშებს. თქვენს მონაცემებს ვიღებთ მხოლოდ მაშინ, როცა თავად გვაწვდით მათ:" },
@@ -54,7 +54,7 @@
   { "tag": "p", "text": "This policy explains what personal data we receive through bbd.ge, what we use it for, and what rights you have." },
 
   { "tag": "h2", "text": "Who we are" },
-  { "tag": "p", "text": "Personal data received through this website is processed by BBD (“we”). For any question, contact us at info@bbd.ge or (+995 32) 2 222 312." },
+  { "tag": "p", "text": "Personal data received through this website is processed by Baltic Business Development LLC (company ID 400098078; “BBD” or “we”). For any question, contact us at info@bbd.ge or (+995 32) 2 222 312." },
 
   { "tag": "h2", "text": "What we collect" },
   { "tag": "p", "text": "The website has no sign-up and creates no user accounts. We only receive your data when you give it to us:" },
@@ -100,7 +100,7 @@
   { "tag": "p", "text": "Эта политика объясняет, какие персональные данные мы получаем через сайт bbd.ge, для чего их используем и какие права есть у вас." },
 
   { "tag": "h2", "text": "Кто мы" },
-  { "tag": "p", "text": "Персональные данные, полученные через этот сайт, обрабатывает BBD («мы»). По любым вопросам пишите на info@bbd.ge или звоните (+995 32) 2 222 312." },
+  { "tag": "p", "text": "Персональные данные, полученные через этот сайт, обрабатывает ООО «Baltic Business Development» (идентификационный код 400098078; далее — «BBD» или «мы»). По любым вопросам пишите на info@bbd.ge или звоните (+995 32) 2 222 312." },
 
   { "tag": "h2", "text": "Какие данные мы собираем" },
   { "tag": "p", "text": "Сайт не требует регистрации и не создаёт учётных записей. Мы получаем ваши данные только тогда, когда вы сами их предоставляете:" },

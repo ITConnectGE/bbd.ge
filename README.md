@@ -24,6 +24,7 @@ src/
   js/main.js          mobile nav, carousel, project filters, contact form
   assets/img          photos, icons, flags (downloaded from Wix, max 2000px)
   assets/fonts        FiraGO Book + Medium (SIL OFL), self-hosted
+  assets/vendor       Leaflet, self-hosted
   assets/files        company-profile PDFs, web-ready (ka / en / ru) — see below
 tools/                one-off tooling used to mirror and verify the original
 docs/                 build output — published by GitHub Pages (git-ignored)
@@ -66,30 +67,33 @@ node tools/shrink-pdfs.js /tmp/pdf-originals src/assets/files 1300 66   # smalle
 
 Set `PDF_BASE` to a URL (e.g. that release) to link out instead of bundling.
 
-## The Google Maps
+## The maps
 
 Wix never puts the map location in the HTML — it hands it to the map iframe at
 runtime. `tools/fetch-maps.js` reads it back off the live `google.maps` objects
 on all 61 pages that have a map and writes `data/maps.json`: centre, zoom, the
 marker title, the Directions link, and Wix's style array (`_style`).
 
-The build then renders the maps one of two ways:
+The maps are then drawn with **Leaflet** and **OpenStreetMap** tiles — no API
+key, no account, no billing. The original used the Google Maps JavaScript API
+under Wix's own enterprise licence, which cannot be reused, so centre, zoom,
+marker and Directions link all match while the tile artwork is OSM's rather
+than Google's. `src/assets/vendor/leaflet` is self-hosted (178 KB).
 
-* **With a Maps JS API key** — set `GOOGLE_MAPS_KEY` and the maps are drawn
-  through the Maps JavaScript API exactly as the original draws them: Wix's own
-  styling (mint landscape, cyan water, no POI or transit, desaturated roads),
-  the marker, and its info window with the title and a Directions link.
-* **Without one** — the build falls back to Google's keyless `output=embed`
-  iframe. Right place and right zoom, but Google's default styling and no info
-  window. This is what ships today.
+Three tile styles are built in. `osm` is the default because it is the only one
+needing no account at all; CARTO's basemaps now watermark unkeyed requests.
 
 ```bash
-GOOGLE_MAPS_KEY=AIza... node build.js
+node build.js                                   # OpenStreetMap (default)
+MAP_TILES=carto MAP_TILES_KEY=... node build.js  # CARTO, once a free key exists
 ```
 
-Restrict the key to the site's domains (HTTP referrer restriction) and to the
-*Maps JavaScript API*. To build with it in CI, add the key as a repository
-secret and pass it through in `.github/workflows/deploy.yml`.
+OSM's tile policy suits a site of this size. If traffic grows, switch to a free
+tier that issues a key — CARTO, MapTiler or Stadia — by setting those two
+variables; nothing else changes.
+
+`data/maps.json` also holds Wix's own Google style array (`_style`), unused by
+Leaflet but kept in case the maps ever move back to the Google API.
 
 16 of the 60 projects have no location set in the Wix CMS and sit at 0,0 —
 that is what the original shows too. They get no marker.
@@ -125,9 +129,9 @@ all three languages, written from what this site actually does: a `mailto:`
 call-request form, embedded Google Maps, a WhatsApp link, no analytics and no
 cookies of its own.
 
-Two things still need a human: the full legal entity name and registration
-number, and a lawyer's review. Update `updated` in that file whenever the text
-changes — it is rendered as the "last updated" line.
+It names the controller as შპს „ბალტიის ბიზნეს განვითარება“ (ID 400098078).
+It still wants a lawyer's review. Update `updated` in that file whenever the
+text changes — it is rendered as the "last updated" line.
 
 ## Known carry-overs from the original site
 
