@@ -1,0 +1,36 @@
+{
+ "_note": "Deliberate content override for the privacy-policy page. data/<lang>.json mirrors the original Wix page (English on ka, half-translated on ru); this file is what actually ships, so re-running tools/extract.js will not undo the translation. Wix's link to its own 'Creating a Privacy Policy' help article is dropped in all three languages.",
+
+ "ka": [
+  { "tag": "h1", "text": "პრივატულობის პოლიტიკა" },
+  { "tag": "h2", "text": "სამართლებრივი განაცხადი" },
+  { "tag": "p", "text": "ამ გვერდზე მოცემული განმარტებები და ინფორმაცია მხოლოდ ზოგადი და მიმოხილვითი ხასიათისაა და ეხება იმას, თუ როგორ უნდა შეადგინოთ პრივატულობის პოლიტიკის საკუთარი დოკუმენტი. არ დაეყრდნოთ მას როგორც იურიდიულ რჩევას ან რეკომენდაციას იმის თაობაზე, თუ რა უნდა გააკეთოთ სინამდვილეში, ვინაიდან წინასწარ ვერ ვიცით, კონკრეტულად რა წესების დადგენა გსურთ თქვენს ბიზნესსა და თქვენს კლიენტებსა და ვიზიტორებს შორის. გირჩევთ, მიმართოთ იურიდიულ კონსულტაციას, რომელიც დაგეხმარებათ საკუთარი პრივატულობის პოლიტიკის გააზრებასა და შედგენაში." },
+  { "tag": "h2", "text": "პრივატულობის პოლიტიკა — საფუძვლები" },
+  { "tag": "p", "text": "ამის მიუხედავად, პრივატულობის პოლიტიკა არის განაცხადი, რომელიც ასახავს იმ გზებს — ნაწილობრივ ან სრულად — რომლითაც ვებგვერდი აგროვებს, იყენებს, ავრცელებს, ამუშავებს და მართავს თავისი ვიზიტორებისა და კლიენტების მონაცემებს. როგორც წესი, იგი ასევე მოიცავს განაცხადს ვებგვერდის ვალდებულების შესახებ, დაიცვას ვიზიტორთა და კლიენტთა პრივატულობა, და განმარტებას იმ მექანიზმების თაობაზე, რომლებსაც ვებგვერდი პრივატულობის დასაცავად იყენებს." },
+  { "tag": "p", "text": "სხვადასხვა იურისდიქციაში განსხვავებული სამართლებრივი ვალდებულებები მოქმედებს იმის თაობაზე, თუ რა უნდა შედიოდეს პრივატულობის პოლიტიკაში. თქვენ ხართ პასუხისმგებელი, უზრუნველყოთ თქვენს საქმიანობასა და ადგილმდებარეობაზე მოქმედი კანონმდებლობის დაცვა." },
+  { "tag": "h2", "text": "რა უნდა შედიოდეს პრივატულობის პოლიტიკაში" },
+  { "tag": "p", "text": "ზოგადად, პრივატულობის პოლიტიკა ხშირად მოიცავს შემდეგ საკითხებს: ინფორმაციის ტიპებს, რომელსაც ვებგვერდი აგროვებს, და მათი შეგროვების წესს; განმარტებას, თუ რატომ აგროვებს ვებგვერდი ამგვარ ინფორმაციას; ვებგვერდის მიდგომას მესამე მხარეებისთვის ინფორმაციის გაზიარებასთან დაკავშირებით; გზებს, რომლითაც თქვენს ვიზიტორებსა და კლიენტებს შეუძლიათ ისარგებლონ პრივატულობის შესაბამისი კანონმდებლობით მინიჭებული უფლებებით; არასრულწლოვანთა მონაცემების შეგროვების კონკრეტულ წესებს; და მრავალ სხვას." }
+ ],
+
+ "en": [
+  { "tag": "h1", "text": "Privacy Policy" },
+  { "tag": "h2", "text": "Legal Disclaimer" },
+  { "tag": "p", "text": "The explanations and information provided on this page are only general and high-level explanations and information on how to write your own document of a Privacy Policy. You should not rely on this article as legal advice or as recommendations regarding what you should actually do, because we cannot know in advance what are the specific privacy policies you wish to establish between your business and your customers and visitors. We recommend that you seek legal advice to help you understand and to assist you in the creation of your own Privacy Policy." },
+  { "tag": "h2", "text": "Privacy Policy - the basics" },
+  { "tag": "p", "text": "Having said that, a privacy policy is a statement that discloses some or all of the ways a website collects, uses, discloses, processes, and manages the data of its visitors and customers. It usually also includes a statement regarding the website's commitment to protecting its visitors' or customers' privacy, and an explanation about the different mechanisms the website is implementing in order to protect privacy." },
+  { "tag": "p", "text": "Different jurisdictions have different legal obligations of what must be included in a Privacy Policy. You are responsible for making sure you are following the relevant legislation to your activities and location." },
+  { "tag": "h2", "text": "What to include in the Privacy Policy" },
+  { "tag": "p", "text": "Generally speaking, a Privacy Policy often addresses these types of issues: the types of information the website is collecting and the manner in which it collects the data; an explanation about why is the website collecting these types of information; what are the website's practices on sharing the information with third parties; ways in which your visitors and customers can exercise their rights according to the relevant privacy legislation; the specific practices regarding minors' data collection; and much much more." }
+ ],
+
+ "ru": [
+  { "tag": "h1", "text": "Политика конфиденциальности" },
+  { "tag": "h2", "text": "Юридическое уведомление" },
+  { "tag": "p", "text": "Пояснения и информация, представленные на этой странице, носят общий и обзорный характер и предназначены для понимания того, как можно составить собственный документ Политики конфиденциальности. Не следует рассматривать данный материал как юридическую консультацию или рекомендации к конкретным действиям, поскольку мы не можем заранее знать, какие именно политики конфиденциальности вы планируете установить во взаимоотношениях между вашим бизнесом, клиентами и посетителями. Мы рекомендуем обратиться за юридической консультацией, чтобы лучше разобраться в вопросе и получить помощь при разработке собственной Политики конфиденциальности." },
+  { "tag": "h2", "text": "Политика конфиденциальности — основы" },
+  { "tag": "p", "text": "При этом Политика конфиденциальности — это заявление, раскрывающее часть или все способы, которыми сайт собирает, использует, раскрывает и обрабатывает данные своих посетителей и клиентов, а также управляет ими. Обычно она также включает заявление о том, что сайт обязуется защищать конфиденциальность своих посетителей и клиентов, и описание механизмов, которые сайт применяет для такой защиты." },
+  { "tag": "p", "text": "В разных юрисдикциях действуют разные требования к тому, что должно входить в Политику конфиденциальности. Вы несёте ответственность за соблюдение законодательства, применимого к вашей деятельности и вашему местонахождению." },
+  { "tag": "h2", "text": "Что включить в Политику конфиденциальности" },
+  { "tag": "p", "text": "В целом Политика конфиденциальности обычно затрагивает следующие вопросы: какие типы информации собирает сайт и каким образом осуществляется сбор данных; почему сайт собирает эти данные; каковы практики сайта по передаче информации третьим лицам; каким образом посетители и клиенты могут реализовать свои права в соответствии с действующим законодательством о защите данных; особенности сбора и обработки данных несовершеннолетних и многое другое." }
+ ]
+}

@@ -17,6 +17,8 @@ data/                 extracted site content (one JSON per language)
   ka.json en.json ru.json
   status.json         which projects are finished vs. in progress
   images.json         every image the site references
+  maps.json           centre/zoom of every Google Map on the site
+  privacy.json        translated privacy-policy copy (overrides the mirror)
 src/
   css/style.css       the whole design system
   js/main.js          mobile nav, carousel, project filters, contact form
@@ -85,7 +87,9 @@ Pages settings.
 ## Editing content
 
 All copy lives in `data/<lang>.json`; edit there and re-run `node build.js`.
-The JSON is regenerated from the live Wix site by:
+`data/privacy.json` is a deliberate override that survives re-extraction — put
+any other hand-edited copy in the same shape. The mirrored JSON is regenerated
+from the live Wix site by:
 
 ```bash
 node tools/fetch-pages.js    # mirror every page into cache/
@@ -103,7 +107,10 @@ These are reproduced as they are on bbd.ge today, not bugs in the rebuild:
   `youtube.com/user/Wix`).
 * The home page "Let's work together" section still carries Wix placeholder
   copy in English on all three languages.
-* The privacy policy is Wix's untranslated template text.
+* The privacy policy is still Wix's *template* text — it explains how to write
+  a privacy policy rather than being one. It has been translated into Georgian
+  and Russian (`data/privacy.json`) and Wix's link to its own help article
+  removed, but it needs replacing with a real policy.
 * The projects page year and work-type filters have no data behind them, so
   they only show their placeholder option. The status filter works.
 * The Georgian and English pages list different office addresses.

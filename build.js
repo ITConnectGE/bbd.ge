@@ -24,6 +24,8 @@ const slugs = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools', 'slugs.json'),
 // centre/zoom of every Google Map on the site, read off the live map instances
 // by tools/fetch-maps.js (Wix never puts the location in the HTML)
 const MAPS = JSON.parse(fs.readFileSync(path.join(DATA, 'maps.json'), 'utf8'));
+// translated privacy-policy copy, overriding what the extractor mirrors
+const PRIVACY = JSON.parse(fs.readFileSync(path.join(DATA, 'privacy.json'), 'utf8'));
 
 // status.json keys are the Georgian labels in DOM order: All / done / ongoing
 const statusKeys = Object.keys(STATUS);
@@ -686,7 +688,10 @@ function pageContact(lang) {
 /* ---------------------------------------------------------------- privacy */
 function pagePrivacy(lang) {
   const d = D[lang], depth = LANG_META[lang].prefix ? 2 : 1;
-  const html = d.privacy.blocks.map((b) => {
+  // PRIVACY (data/privacy.json) is the translated copy and wins over the
+  // half-English text the extractor mirrors from Wix
+  const blocks = PRIVACY[lang] || d.privacy.blocks;
+  const html = blocks.map((b) => {
     if (b.tag === 'h1') return `<h1>${b.html || esc(b.text)}</h1>`;
     if (/^h[2-6]$/.test(b.tag)) return `<h2>${b.html || esc(b.text)}</h2>`;
     return `<p>${b.html || esc(b.text)}</p>`;
@@ -701,8 +706,8 @@ function pagePrivacy(lang) {
 
   return head(lang, depth, {
     key: 'privacy',
-    title: `${(d.privacy.blocks[0] || {}).text || 'Privacy Policy'} | BBD`,
-    description: (d.privacy.blocks[2] || {}).text || '',
+    title: `${(blocks[0] || {}).text || 'Privacy Policy'} | BBD`,
+    description: (blocks[2] || {}).text || '',
   }) + header(lang, depth, '') + body + footer(lang, depth, '');
 }
 
