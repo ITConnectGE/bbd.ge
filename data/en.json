@@ -982,6 +982,20 @@
     },
     "items": [
       {
+        "id": "b7e4c2a1-5d3f-4e8a-9c61-2f0d8a7e3b15",
+        "title": "Odesa Street Residential Complex",
+        "desc": "Complete technical solution for mechanical and plumbing systems",
+        "image": {
+          "uri": "odesa-street-residential-complex-1.jpg",
+          "w": 554,
+          "h": 554,
+          "alt": "",
+          "name": "ODESSA.jpg"
+        },
+        "slug": "odesa-street-residential-complex",
+        "more": "Learn More"
+      },
+      {
         "id": "4e1c534e-ebd1-49da-bc30-06b7e0873f24",
         "title": "Hisni Towers by Biograpi",
         "desc": "Full MEP (Mechanical, Electrical, Plumbing) — complete technical solution for mechanical, electrical and plumbing systems",
@@ -1586,7 +1600,7 @@
       {
         "id": "c95c545e-710e-463b-bdff-69a15bd6cd75",
         "title": "Lisi Hills Residence",
-        "desc": "Full MEP (Mechanical, Electrical, Plumbing) — complete technical solution for mechanical, electrical and plumbing systems",
+        "desc": "Full MEP (Mechanical, Electrical, Plumbing) — complete design of mechanical, electrical and plumbing systems",
         "image": {
           "uri": "67673b_90ab8991a9234d04909772cb96cf37d1~mv2.jpeg",
           "w": 2560,
@@ -1824,6 +1838,33 @@
     ]
   },
   "projects": {
+    "odesa-street-residential-complex": {
+      "slug": "odesa-street-residential-complex",
+      "back": "All projects",
+      "title": "Odesa Street Residential Complex",
+      "desc": "Complete technical solution for mechanical and plumbing systems",
+      "fields": [
+        {
+          "label": "Customer:",
+          "value": "Green Apart Holding"
+        },
+        {
+          "label": "Year:",
+          "value": "2026"
+        },
+        {
+          "label": "Project details:",
+          "value": "Residential Complex"
+        },
+        {
+          "label": "Scope of work:",
+          "value": ""
+        }
+      ],
+      "gallery": [
+        "odesa-street-residential-complex-1.jpg"
+      ]
+    },
     "matiani-by-biograpi-": {
       "slug": "matiani-by-biograpi-",
       "back": "All projects",
@@ -3040,7 +3081,7 @@
       "slug": "lisi-hills-residence",
       "back": "All projects",
       "title": "Lisi Hills Residence",
-      "desc": "Full MEP (Mechanical, Electrical, Plumbing) — complete technical solution for mechanical, electrical and plumbing systems",
+      "desc": "Full MEP (Mechanical, Electrical, Plumbing) — complete design of mechanical, electrical and plumbing systems",
       "fields": [
         {
           "label": "Customer:",

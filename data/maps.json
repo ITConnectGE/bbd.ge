@@ -571,5 +571,12 @@
   "lat": 0,
   "lng": 0,
   "zoom": 14
+ },
+ "projects/odesa-street-residential-complex": {
+  "lat": 41.7334252,
+  "lng": 44.7637455,
+  "zoom": 15,
+  "title": "Odesa Street Residential Complex",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=17%20Odesa%20St%2C%20Tbilisi%2C%20Georgia"
  }
 }
